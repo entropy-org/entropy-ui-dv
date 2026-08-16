@@ -14,9 +14,10 @@ and is recreated with `pnpm pack:check`.
   `mkkhlif` account and verified through a clean registry install.
 - [x] GitHub trusted publishing configured for `entropy-org/entropy-ui-dv`,
   workflow `release.yml`, allowing `npm publish`.
-- [x] Protect `main` with the `verify` status check, one approving review,
-  stale-review dismissal, conversation resolution, linear history, and
-  force-push/deletion prevention. The rules apply to administrators too.
+- [x] Protect `main` with required pull requests and the `verify` status check,
+  conversation resolution, linear history, and force-push/deletion prevention.
+  The rules apply to administrators; external approval is optional for the
+  solo-maintainer workflow.
 
 The release workflow uses GitHub OIDC and npm provenance. It intentionally has
 no long-lived npm publishing token.
