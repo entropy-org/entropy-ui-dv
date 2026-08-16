@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.1.0-next.2 - 2026-08-16
+
+- Restore the original dark shadcn/Notion visual baseline, IBM Plex typography,
+  subtle borders, and component motion in Storybook and standalone usage.
+- Fully scope the compiled Tailwind stylesheet so it cannot reset or retheme a
+  consuming application.
+- Preserve host tokens across nested database-view surfaces and document the
+  host-native Tailwind integration used by shadcn applications.
+- Replace the public docs theme with a minimal dark product presentation and
+  add visual, nested-theme, accessibility, and package regression coverage.
+
 ## 0.1.0-next.1 - 2026-08-16
 
 - Complete embedded database-shell ownership of title, actions, and create

@@ -1,6 +1,6 @@
 {
   "name": "@entropy-ui/data-views",
-  "version": "0.1.0-next.1",
+  "version": "0.1.0-next.2",
   "description": "Controlled React list, kanban, calendar, timeline, and multi-view database components.",
   "license": "MIT",
   "repository": {
@@ -13,8 +13,15 @@
     "url": "https://github.com/entropy-org/entropy-ui-dv/issues"
   },
   "type": "module",
-  "sideEffects": ["**/*.css"],
-  "files": ["dist", "README.md", "LICENSE", "CHANGELOG.md"],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -64,7 +71,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "build": "vite build --config vite.styles.config.ts && tsc -p tsconfig.build.json",
+    "build": "vite build --config vite.styles.config.ts && node scripts/scope-styles.mjs && tsc -p tsconfig.build.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run --project unit",
     "test:storybook": "vitest run --project storybook",
@@ -97,6 +104,7 @@
   },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.18.2",
+    "@fontsource-variable/ibm-plex-sans": "^5.3.0",
     "@storybook/addon-a11y": "^10.5.0",
     "@storybook/addon-docs": "^10.5.0",
     "@storybook/addon-vitest": "^10.5.0",
@@ -105,13 +113,15 @@
     "@testing-library/jest-dom": "^7.0.0",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
-    "@vitest/browser-playwright": "^4.1.0",
+    "@types/node": "^24.0.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "@types/node": "^24.0.0",
     "@vitejs/plugin-react": "^6.0.0",
+    "@vitest/browser-playwright": "^4.1.0",
     "jsdom": "^29.1.0",
     "playwright": "^1.61.1",
+    "postcss": "^8.5.26",
+    "postcss-prefix-selector": "^2.1.1",
     "publint": "^0.3.15",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",

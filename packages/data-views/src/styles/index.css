@@ -35,6 +35,20 @@
 
 .edv-root,
 [data-edv-root] {
+  color: var(--edv-foreground);
+  font-family: var(--edv-font-sans);
+}
+
+/*
+ * Only a top-level surface establishes fallback tokens. Nested surfaces and
+ * portal content must inherit the nearest DataViewThemeProvider; resetting
+ * here made explicit dark themes render light once DatabaseViews mounted an
+ * inner list, kanban, calendar, or timeline root.
+ */
+.edv-root:not(:where(.edv-root .edv-root, [data-edv-root] .edv-root)),
+[data-edv-root]:not(
+  :where(.edv-root [data-edv-root], [data-edv-root] [data-edv-root])
+) {
   --edv-background: var(--background, oklch(1 0 0));
   --edv-foreground: var(--foreground, oklch(0.21 0.03 264));
   --edv-card: var(--card, var(--edv-background));
@@ -59,23 +73,69 @@
   --edv-radius: var(--radius, 0.625rem);
   --edv-font-sans: var(--font-sans, ui-sans-serif, system-ui, sans-serif);
   --edv-font-heading: var(--font-heading, var(--edv-font-sans));
-  color: var(--edv-foreground);
-  font-family: var(--edv-font-sans);
+}
+
+[data-edv-theme="light"] {
+  --edv-background: oklch(1 0 0);
+  --edv-foreground: oklch(0.2101 0.0318 264.6645);
+  --edv-card: oklch(1 0 0);
+  --edv-card-foreground: var(--edv-foreground);
+  --edv-popover: oklch(1 0 0);
+  --edv-popover-foreground: var(--edv-foreground);
+  --edv-primary: oklch(0.6716 0.1368 48.513);
+  --edv-primary-foreground: var(--edv-foreground);
+  --edv-secondary: oklch(0.536 0.0398 196.028);
+  --edv-secondary-foreground: oklch(1 0 0);
+  --edv-muted: oklch(0.967 0.0029 264.5419);
+  --edv-muted-foreground: oklch(0.54 0.0234 264.3637);
+  --edv-accent: oklch(0.9491 0 0);
+  --edv-accent-foreground: var(--edv-foreground);
+  --edv-destructive: oklch(0.6368 0.2078 25.3313);
+  --edv-border: oklch(0.9276 0.0058 264.5313);
+  --edv-input: var(--edv-border);
+  --edv-ring: var(--edv-primary);
+  --edv-success: oklch(0.696 0.17 162.48);
+  --edv-warning: oklch(0.769 0.188 70.08);
+  --edv-info: oklch(0.606 0.25 292.717);
 }
 
 [data-edv-theme="dark"] {
-  --edv-background: oklch(0.18 0.004 308);
-  --edv-foreground: oklch(0.86 0 0);
-  --edv-card: oklch(0.2 0 0);
+  --edv-background: oklch(0.1797 0.0043 308.1928);
+  --edv-foreground: oklch(0.8109 0 0);
+  --edv-card: oklch(0.1822 0 0);
   --edv-card-foreground: var(--edv-foreground);
-  --edv-popover: oklch(0.18 0.004 308);
+  --edv-popover: oklch(0.1797 0.0043 308.1928);
   --edv-popover-foreground: var(--edv-foreground);
-  --edv-muted: oklch(0.25 0 0);
-  --edv-muted-foreground: oklch(0.68 0 0);
-  --edv-accent: oklch(0.32 0 0);
+  --edv-primary: oklch(0.7214 0.1337 49.9802);
+  --edv-primary-foreground: var(--edv-background);
+  --edv-secondary: oklch(0.61 0.0443 196.0233);
+  --edv-secondary-foreground: var(--edv-background);
+  --edv-muted: oklch(0.252 0 0);
+  --edv-muted-foreground: oklch(0.64 0 0);
+  --edv-accent: oklch(0.3211 0 0);
   --edv-accent-foreground: var(--edv-foreground);
-  --edv-border: oklch(0.3 0 0);
+  --edv-destructive: oklch(0.61 0.0443 196.0233);
+  --edv-border: oklch(0.252 0 0);
   --edv-input: var(--edv-border);
+  --edv-ring: var(--edv-primary);
+  --edv-success: oklch(0.696 0.17 162.48);
+  --edv-warning: oklch(0.769 0.188 70.08);
+  --edv-info: oklch(0.606 0.25 292.717);
+}
+
+/* Match shadcn's base contract without leaking it into the host document. */
+@layer base {
+  .edv-root,
+  .edv-root *,
+  .edv-root::before,
+  .edv-root::after,
+  [data-edv-root],
+  [data-edv-root] *,
+  [data-edv-root]::before,
+  [data-edv-root]::after {
+    border-color: var(--edv-border);
+    outline-color: color-mix(in oklab, var(--edv-ring) 50%, transparent);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

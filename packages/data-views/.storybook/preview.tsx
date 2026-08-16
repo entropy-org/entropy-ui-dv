@@ -1,9 +1,10 @@
-import type { Preview } from "@storybook/react-vite"
+import type { Preview } from "@storybook/react-vite";
 import {
   DataViewThemeProvider,
   type DataViewThemeMode,
-} from "../src/core/theme.js"
-import "../src/styles/index.css"
+} from "../src/core/theme.js";
+import "@fontsource-variable/ibm-plex-sans";
+import "../src/styles/index.css";
 
 const preview: Preview = {
   tags: ["autodocs"],
@@ -22,7 +23,7 @@ const preview: Preview = {
     },
   },
   initialGlobals: {
-    theme: "light",
+    theme: "dark",
   },
   parameters: {
     layout: "fullscreen",
@@ -42,13 +43,17 @@ const preview: Preview = {
   decorators: [
     (Story, context) => (
       <DataViewThemeProvider
-        theme={(context.globals.theme ?? "light") as DataViewThemeMode}
+        theme={(context.globals.theme ?? "dark") as DataViewThemeMode}
+        tokens={{
+          fontSans: "'IBM Plex Sans Variable', sans-serif",
+          fontHeading: "'IBM Plex Sans Variable', sans-serif",
+        }}
         className="min-h-screen bg-background text-foreground"
       >
         <Story />
       </DataViewThemeProvider>
     ),
   ],
-}
+};
 
-export default preview
+export default preview;

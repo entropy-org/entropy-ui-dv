@@ -2,7 +2,7 @@
 
 ## Prepared release candidate
 
-The repository is prepared at `0.1.0-next.1` at
+The repository is prepared at `0.1.0-next.2` at
 `https://github.com/entropy-org/entropy-ui-dv`. It includes Changesets, public
 package metadata, MIT licensing, explicit exports, npm provenance settings,
 CI, and a release workflow. The local tarball is intentionally ignored by Git
@@ -10,8 +10,9 @@ and is recreated with `pnpm pack:check`.
 
 ## Release-owner setup
 
-- [x] `@entropy-ui/data-views@0.1.0-next.1` published from the authenticated
-  `mkkhlif` account and verified through a clean registry install.
+- [x] `@entropy-ui/data-views@0.1.0-next.2` published through GitHub trusted
+  publishing for the `mkkhlif` npm account and verified through a clean
+  registry install.
 - [x] GitHub trusted publishing configured for `entropy-org/entropy-ui-dv`,
   workflow `release.yml`, allowing `npm publish`.
 - [x] Protect `main` with required pull requests and the `verify` status check,
@@ -29,7 +30,7 @@ pnpm check
 pnpm publish:next
 ```
 
-The source application now pins `@entropy-ui/data-views@0.1.0-next.1` from npm.
+The source application now pins `@entropy-ui/data-views@0.1.0-next.2` from npm.
 Its typecheck, lint, unit tests, and production build pass against the registry
 artifact. Package fixtures continue to validate the exact tarball built by the
 release gate before each publication.

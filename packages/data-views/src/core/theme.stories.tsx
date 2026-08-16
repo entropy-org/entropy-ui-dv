@@ -1,11 +1,11 @@
-import React from "react"
-import type { Meta, StoryObj } from "@storybook/react-vite"
-import { Badge } from "../components/ui/badge.js"
-import { Button } from "../components/ui/button.js"
+import React from "react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import { Badge } from "../components/ui/badge.js";
+import { Button } from "../components/ui/button.js";
 import {
   DataViewThemeProvider,
   type DataViewThemeProviderProps,
-} from "./theme.js"
+} from "./theme.js";
 
 const oceanTokens = {
   background: "#f5fbff",
@@ -24,14 +24,14 @@ const oceanTokens = {
   input: "#aac4ce",
   ring: "#005a7a",
   radius: "1rem",
-} as const
+} as const;
 
-type ThemePreviewProps = Pick<DataViewThemeProviderProps, "theme" | "tokens">
+type ThemePreviewProps = Pick<DataViewThemeProviderProps, "theme" | "tokens">;
 
 const ThemePreview = React.memo(
   React.forwardRef<HTMLDivElement, ThemePreviewProps>(function ThemePreview(
     { theme, tokens },
-    ref
+    ref,
   ) {
     return (
       <DataViewThemeProvider
@@ -68,9 +68,9 @@ const ThemePreview = React.memo(
           </div>
         </div>
       </DataViewThemeProvider>
-    )
-  })
-)
+    );
+  }),
+);
 
 const meta = {
   title: "Core/Theming",
@@ -83,18 +83,18 @@ const meta = {
       },
     },
   },
-} satisfies Meta<typeof DataViewThemeProvider>
+} satisfies Meta<typeof DataViewThemeProvider>;
 
-export default meta
-type Story = StoryObj<typeof meta>
+export default meta;
+type Story = StoryObj<typeof meta>;
 
 export const Light: Story = {
   render: () => <ThemePreview theme="light" />,
-}
+};
 
 export const Dark: Story = {
   render: () => <ThemePreview theme="dark" />,
-}
+};
 
 export const CustomTokens: Story = {
   render: () => <ThemePreview theme="light" tokens={oceanTokens} />,
@@ -106,7 +106,7 @@ export const CustomTokens: Story = {
       },
     },
   },
-}
+};
 
 export const IndependentlyScoped: Story = {
   render: () => (
@@ -123,4 +123,61 @@ export const IndependentlyScoped: Story = {
       },
     },
   },
-}
+};
+
+export const NestedSurfacesInheritTokens: Story = {
+  render: () => (
+    <DataViewThemeProvider
+      theme="dark"
+      tokens={{
+        background: "#09090b",
+        foreground: "#f4f4f5",
+        primary: "#f59e0b",
+      }}
+      className="min-h-96 bg-background p-8 text-foreground"
+      data-nested-theme="outer"
+    >
+      <div
+        className="edv-root rounded-xl border bg-background p-6 text-foreground"
+        data-edv-root=""
+        data-nested-theme="inner"
+      >
+        Nested view surface
+      </div>
+    </DataViewThemeProvider>
+  ),
+  play: ({ canvasElement }) => {
+    const outer = canvasElement.querySelector<HTMLElement>(
+      '[data-nested-theme="outer"]',
+    );
+    const inner = canvasElement.querySelector<HTMLElement>(
+      '[data-nested-theme="inner"]',
+    );
+
+    if (!outer || !inner)
+      throw new Error("Nested theme fixture did not render");
+
+    const outerStyle = getComputedStyle(outer);
+    const innerStyle = getComputedStyle(inner);
+    for (const token of [
+      "--edv-background",
+      "--edv-foreground",
+      "--edv-primary",
+    ]) {
+      if (
+        innerStyle.getPropertyValue(token) !==
+        outerStyle.getPropertyValue(token)
+      ) {
+        throw new Error(`${token} was reset by a nested data-view root`);
+      }
+    }
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          "Nested list, kanban, calendar, and timeline roots inherit the nearest provider tokens instead of resetting to light defaults.",
+      },
+    },
+  },
+};

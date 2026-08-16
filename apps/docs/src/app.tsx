@@ -1,15 +1,15 @@
-import { useEffect, useState, type ReactNode } from "react"
-import { DataViewThemeProvider } from "@entropy-ui/data-views"
+import { useEffect, useState, type ReactNode } from "react";
+import { DataViewThemeProvider } from "@entropy-ui/data-views";
 import {
   CalendarExample,
   DatabaseExample,
   KanbanExample,
   ListExample,
   TimelineExample,
-} from "./examples"
+} from "./examples";
 
-const VIEW_TABS = ["list", "kanban", "calendar", "timeline"] as const
-type ViewTab = (typeof VIEW_TABS)[number]
+const VIEW_TABS = ["list", "kanban", "calendar", "timeline"] as const;
+type ViewTab = (typeof VIEW_TABS)[number];
 
 const CODE = `import { DatabaseViews, createSavedDataView } from "@entropy-ui/data-views"
 import { createBuiltInDataViewPlugins } from "@entropy-ui/data-views/adapters"
@@ -24,7 +24,7 @@ import "@entropy-ui/data-views/styles.css"
   onViewsChange={setViews}
   plugins={createBuiltInDataViewPlugins()}
   onIntent={handleIntent}
-/>`
+/>`;
 
 function Mark() {
   return (
@@ -33,23 +33,23 @@ function Mark() {
       <i />
       <i />
     </span>
-  )
+  );
 }
 
 function CopyButton({ text }: { readonly text: string }) {
-  const [copied, setCopied] = useState(false)
+  const [copied, setCopied] = useState(false);
   return (
     <button
       className="copy-button"
       onClick={async () => {
-        await navigator.clipboard.writeText(text)
-        setCopied(true)
-        window.setTimeout(() => setCopied(false), 1600)
+        await navigator.clipboard.writeText(text);
+        setCopied(true);
+        window.setTimeout(() => setCopied(false), 1600);
       }}
     >
       {copied ? "Copied" : "Copy"}
     </button>
-  )
+  );
 }
 
 function SectionHeading({
@@ -57,9 +57,9 @@ function SectionHeading({
   title,
   copy,
 }: {
-  readonly eyebrow: string
-  readonly title: string
-  readonly copy: string
+  readonly eyebrow: string;
+  readonly title: string;
+  readonly copy: string;
 }) {
   return (
     <div className="section-heading">
@@ -67,7 +67,7 @@ function SectionHeading({
       <h2>{title}</h2>
       <p>{copy}</p>
     </div>
-  )
+  );
 }
 
 function OwnershipCard({
@@ -75,9 +75,9 @@ function OwnershipCard({
   title,
   children,
 }: {
-  readonly number: string
-  readonly title: string
-  readonly children: ReactNode
+  readonly number: string;
+  readonly title: string;
+  readonly children: ReactNode;
 }) {
   return (
     <article className="ownership-card">
@@ -85,19 +85,19 @@ function OwnershipCard({
       <h3>{title}</h3>
       <p>{children}</p>
     </article>
-  )
+  );
 }
 
 export function App() {
   const [theme, setTheme] = useState<"light" | "dark">(() =>
-    localStorage.getItem("edv-docs-theme") === "dark" ? "dark" : "light",
-  )
-  const [engine, setEngine] = useState<ViewTab>("list")
+    localStorage.getItem("edv-docs-theme-v2") === "light" ? "light" : "dark",
+  );
+  const [engine, setEngine] = useState<ViewTab>("list");
 
   useEffect(() => {
-    document.documentElement.classList.toggle("site-dark", theme === "dark")
-    localStorage.setItem("edv-docs-theme", theme)
-  }, [theme])
+    document.documentElement.classList.toggle("site-dark", theme === "dark");
+    localStorage.setItem("edv-docs-theme-v2", theme);
+  }, [theme]);
 
   const engineExample =
     engine === "list" ? (
@@ -108,7 +108,7 @@ export function App() {
       <CalendarExample />
     ) : (
       <TimelineExample />
-    )
+    );
 
   return (
     <div className="site-shell">
@@ -373,5 +373,5 @@ export function App() {
         </div>
       </footer>
     </div>
-  )
+  );
 }
