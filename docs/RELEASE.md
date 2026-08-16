@@ -21,13 +21,16 @@ and is recreated with `pnpm pack:check`.
   solo-maintainer workflow.
 
 The release workflow uses GitHub OIDC and npm provenance. It intentionally has
-no long-lived npm publishing token.
+no long-lived npm publishing token and does not require permission to create
+pull requests. Version changes are reviewed in the normal protected source PR;
+after merge, `main` publishes that exact version.
 
 ## Candidate publication
 
 ```sh
+pnpm changeset
+pnpm version-packages
 pnpm check
-pnpm publish:next
 ```
 
 The source application now pins `@entropy-ui/data-views@0.1.0-next.2` from npm.
