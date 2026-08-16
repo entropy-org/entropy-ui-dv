@@ -7,13 +7,12 @@
       name="description"
       content="Composable React data views for list, kanban, calendar, timeline, and Notion-inspired databases."
     />
-    <meta name="theme-color" content="#09090b" />
+    <meta name="theme-color" content="#121113" />
     <title>Entropy Data Views — React components for every perspective</title>
     <script>
-      document.documentElement.classList.toggle(
-        "site-dark",
-        localStorage.getItem("edv-docs-theme-v2") !== "light",
-      );
+      const isDark = localStorage.getItem("edv-docs-theme-v2") !== "light";
+      document.documentElement.classList.toggle("dark", isDark);
+      document.documentElement.classList.toggle("site-dark", isDark);
     </script>
   </head>
   <body>
