@@ -8,13 +8,14 @@ package metadata, MIT licensing, explicit exports, npm provenance settings,
 CI, and a release workflow. The local tarball is intentionally ignored by Git
 and is recreated with `pnpm pack:check`.
 
-## Required release-owner setup
+## Release-owner setup
 
-1. Publish and approve the initial `next` candidate from the authenticated
-   `mkkhlif` account, owner of the `entropy-ui` organization.
-2. Configure GitHub trusted publishing for `entropy-org/entropy-ui-dv`, workflow
-   `release.yml`, allowing `npm publish`.
-3. Protect `main` so `pnpm check` must pass before merge.
+- [x] `@entropy-ui/data-views@0.1.0-next.1` published from the authenticated
+  `mkkhlif` account and verified through a clean registry install.
+- [x] GitHub trusted publishing configured for `entropy-org/entropy-ui-dv`,
+  workflow `release.yml`, allowing `npm publish`.
+- [ ] Protect `main` so `pnpm check` must pass before merge. This remains a
+  repository-settings task because the GitHub CLI is unavailable locally.
 
 The release workflow uses GitHub OIDC and npm provenance. It intentionally has
 no long-lived npm publishing token.
@@ -26,9 +27,10 @@ pnpm check
 pnpm publish:next
 ```
 
-After publishing, replace fixture tarball references with
-`@entropy-ui/data-views@0.1.0-next.1`, reinstall with a frozen lockfile, and
-repeat Vite, Next, React 18, and `entropy-ui` gates from the registry artifact.
+The source application now pins `@entropy-ui/data-views@0.1.0-next.1` from npm.
+Its typecheck, lint, unit tests, and production build pass against the registry
+artifact. Package fixtures continue to validate the exact tarball built by the
+release gate before each publication.
 
 ## Stable promotion
 

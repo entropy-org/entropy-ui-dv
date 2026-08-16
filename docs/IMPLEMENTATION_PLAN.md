@@ -1,6 +1,6 @@
 # Publishable Data Views Library — Implementation Plan
 
-Status: implementation complete through prerelease integration; public release pending external ownership
+Status: prerelease published and integrated; stable promotion pending acceptance window
 Working package name: `@entropy-ui/data-views`
 Target repository: `entropy-org/entropy-ui-dv`
 Source application: `entropy-ui`
@@ -599,23 +599,23 @@ Exit criteria:
 
 ### Phase 1 — Bootstrap the external repository
 
-Status: complete except external repository/scope reservation
+Status: complete
 
 Deliverables:
 
-- [ ] Reserve npm scope/package and repository name.
-- [ ] Create the pnpm workspace and package/app/fixture layout.
-- [ ] Configure TypeScript declarations, ESM build, explicit exports, CSS
+- [x] Reserve npm scope/package and repository name.
+- [x] Create the pnpm workspace and package/app/fixture layout.
+- [x] Configure TypeScript declarations, ESM build, explicit exports, CSS
   output, source maps, and package provenance.
-- [ ] Configure Vitest, Testing Library, browser tests, Storybook, accessibility
+- [x] Configure Vitest, Testing Library, browser tests, Storybook, accessibility
   checks, and visual regression.
-- [ ] Configure ESLint, formatting, API-extractor/type tests, and bundle-size
+- [x] Configure ESLint, formatting, API-extractor/type tests, and bundle-size
   reporting.
-- [ ] Configure Changesets and `next`/snapshot publishing.
-- [ ] Add Vite and Next.js clean-install fixtures.
-- [ ] Add CI for build, test, typecheck, lint, package contents, SSR import, and
+- [x] Configure Changesets and `next`/snapshot publishing.
+- [x] Add Vite and Next.js clean-install fixtures.
+- [x] Add CI for build, test, typecheck, lint, package contents, SSR import, and
   fixture installation.
-- [ ] Add license, contribution guide, support policy, security policy, and
+- [x] Add license, contribution guide, support policy, security policy, and
   browser support statement.
 
 Exit criteria:
@@ -871,19 +871,19 @@ Exit criteria:
 
 ### Phase 12 — Stable release and source removal
 
-Status: source removal and release engineering complete; npm/GitHub publication pending external ownership
+Status: prerelease and source removal complete; `1.0.0` pending acceptance window
 
 Deliverables:
 
-- [ ] Complete public API and semver review.
-- [ ] Confirm package name/scope ownership, provenance, license, README, and
+- [x] Complete public API and semver review.
+- [x] Confirm package name/scope ownership, provenance, license, README, and
   support policy.
-- [ ] Publish a release candidate and test a clean installation from npm.
-- [ ] Resolve release-candidate findings.
+- [x] Publish a release candidate and test a clean installation from npm.
+- [x] Resolve release-candidate findings.
 - [ ] Publish `1.0.0` only after the app uses the candidate successfully.
-- [ ] Remove duplicated view engines from `entropy-ui` in a separate, reviewable
+- [x] Remove duplicated view engines from `entropy-ui` in a separate, reviewable
   change.
-- [ ] Retain migration notes and a rollback path for one release window.
+- [x] Retain migration notes and a rollback path for one release window.
 - [ ] Tag source/application compatibility revisions.
 
 Exit criteria:
