@@ -2,7 +2,7 @@
 
 Status: implementation complete through prerelease integration; public release pending external ownership
 Working package name: `@entropy-ui/data-views`
-Target repository: `entropy-data-views`
+Target repository: `entropy-org/entropy-ui-dv`
 Source application: `entropy-ui`
 Decision date: 2026-08-16
 Last updated: 2026-08-16

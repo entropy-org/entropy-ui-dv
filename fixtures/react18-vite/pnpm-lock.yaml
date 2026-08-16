@@ -99,7 +99,7 @@ packages:
       react: '>=16.8.0'
 
   '@entropy-ui/data-views@file:../../artifacts/entropy-ui-data-views-0.1.0-next.1.tgz':
-    resolution: {integrity: sha512-84gKysEsmg/Ti8asjecZJvIPdsShgqNHYkf9acJfsk0jG6bnWKKzXn4c/3e0/yZdflkHTkC6yY5hRB+GaQe/jQ==, tarball: file:../../artifacts/entropy-ui-data-views-0.1.0-next.1.tgz}
+    resolution: {integrity: sha512-m+TgaJRogrA4/p43PIIBfmYqeYojzSDI3oeiZAPT1gUuuxCfn4bop21wabqeJde9/xcL/VmJ1Pcs7TtzmOkE9w==, tarball: file:../../artifacts/entropy-ui-data-views-0.1.0-next.1.tgz}
     version: 0.1.0-next.1
     engines: {node: '>=20'}
     peerDependencies:

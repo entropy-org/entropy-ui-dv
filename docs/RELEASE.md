@@ -2,21 +2,22 @@
 
 ## Prepared release candidate
 
-The repository is prepared at `0.1.0-next.1`. It includes Changesets, public
+The repository is prepared at `0.1.0-next.1` at
+`https://github.com/entropy-org/entropy-ui-dv`. It includes Changesets, public
 package metadata, MIT licensing, explicit exports, npm provenance settings,
 CI, and a release workflow. The local tarball is intentionally ignored by Git
 and is recreated with `pnpm pack:check`.
 
 ## Required release-owner setup
 
-1. Create or select the GitHub repository and add it as `origin`.
-2. Confirm that the publishing account owns the `@entropy-ui` npm scope.
-3. Configure GitHub trusted publishing or an `NPM_TOKEN` for the release
-   workflow.
-4. Protect `main` so `pnpm check` must pass before merge.
+1. Publish and approve the initial `next` candidate from the authenticated
+   `mkkhlif` account, owner of the `entropy-ui` organization.
+2. Configure GitHub trusted publishing for `entropy-org/entropy-ui-dv`, workflow
+   `release.yml`, allowing `npm publish`.
+3. Protect `main` so `pnpm check` must pass before merge.
 
-Repository creation and npm ownership are external authority decisions. Do not
-guess either from the source application's remote.
+The release workflow uses GitHub OIDC and npm provenance. It intentionally has
+no long-lived npm publishing token.
 
 ## Candidate publication
 
