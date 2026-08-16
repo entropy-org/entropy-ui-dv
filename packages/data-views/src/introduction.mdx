@@ -1,0 +1,82 @@
+import { Meta } from "@storybook/addon-docs/blocks"
+
+<Meta title="Introduction/Welcome" />
+
+# Entropy Data Views
+
+Composable React data views for building Notion-inspired databases. The package
+provides controlled list, kanban, calendar, timeline, and multi-view database
+surfaces without taking ownership of your records or forms.
+
+## Install
+
+```sh
+npm install @entropy-ui/data-views
+```
+
+Import the stylesheet once at your application boundary:
+
+```tsx
+import "@entropy-ui/data-views/styles.css"
+```
+
+Then choose either a standalone view or the database wrapper:
+
+```tsx
+import {
+  DatabaseViews,
+  createBuiltInDataViewPlugins,
+} from "@entropy-ui/data-views"
+
+<DatabaseViews
+  source={{
+    mode: "client",
+    id: "projects",
+    label: "Projects",
+    records,
+  }}
+  schema={schema}
+  views={views}
+  activeViewId={activeViewId}
+  onActiveViewIdChange={setActiveViewId}
+  onViewsChange={setViews}
+  plugins={createBuiltInDataViewPlugins()}
+  onIntent={handleIntent}
+/>
+```
+
+## Ownership model
+
+The library owns display behavior, view preferences, selection, drag state, and
+accessibility interactions. Your application owns fetched records, persistence,
+permissions, create/edit/delete forms, and mutation side effects. Data changes
+are emitted as typed intents or commands so the same UI can sit on local data,
+TanStack Query, or another server-state layer.
+
+## Choose a surface
+
+- **Database views** — one controlled shell with saved-view tabs and built-in
+  renderers for every view type.
+- **Data list** — dense records, grouping, hierarchy, inline editing,
+  virtualization, and server pagination.
+- **Kanban** — grouped cards, swimlanes, WIP limits, keyboard navigation, and
+  optimistic drag commands.
+- **Calendar** — month, week, and agenda modes with time-zone-aware ranges.
+- **Timeline** — zoomable and virtualized date ranges with hierarchy and
+  dependencies.
+
+Use the theme switch in the Storybook toolbar to inspect every example in light,
+dark, or system mode. See **Core / Theming** for scoped token overrides.
+
+## Public entry points
+
+```ts
+import { DatabaseViews } from "@entropy-ui/data-views"
+import { DataList } from "@entropy-ui/data-views/list"
+import { Kanban } from "@entropy-ui/data-views/kanban"
+import { Calendar } from "@entropy-ui/data-views/calendar"
+import { Timeline } from "@entropy-ui/data-views/timeline"
+```
+
+The [source repository](https://github.com/entropy-org/entropy-ui-dv) contains
+architecture, theming, SSR, migration, and release documentation.

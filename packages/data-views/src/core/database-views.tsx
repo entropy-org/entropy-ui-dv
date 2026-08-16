@@ -123,24 +123,24 @@ export const DatabaseViewTabs = React.memo(
             "flex min-w-0 items-center gap-0.5 overflow-x-auto px-2",
             className
           )}
-          role="tablist"
-          aria-label="Data views"
           data-edv-part="view-tabs"
           {...props}
         >
-          {views.map((view) => (
-            <Button
-              key={view.id}
-              role="tab"
-              aria-selected={view.id === activeViewId}
-              variant={view.id === activeViewId ? "secondary" : "ghost"}
-              className="gap-1.5"
-              onClick={() => onActiveViewIdChange(view.id)}
-            >
-              <ViewIcon type={view.definition.type} />
-              <span className="max-w-36 truncate">{view.name}</span>
-            </Button>
-          ))}
+          <div className="contents" role="tablist" aria-label="Data views">
+            {views.map((view) => (
+              <Button
+                key={view.id}
+                role="tab"
+                aria-selected={view.id === activeViewId}
+                variant={view.id === activeViewId ? "secondary" : "ghost"}
+                className="gap-1.5"
+                onClick={() => onActiveViewIdChange(view.id)}
+              >
+                <ViewIcon type={view.definition.type} />
+                <span className="max-w-36 truncate">{view.name}</span>
+              </Button>
+            ))}
+          </div>
           {onCreateViewRequest ? (
             <Popover>
               <PopoverTrigger

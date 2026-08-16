@@ -38,7 +38,26 @@ function ControlledBoard({ sourceCards = initialCards, sourceGroups = groups, so
   return <KanbanProvider config={{ cards, groups: sourceGroups, ...(sourceLanes ? { swimlanes: sourceLanes } : {}), preferences, readOnly, renderCard: (card, state) => { const data = card.data as { title: string; owner?: string }; return <div><p className="font-medium">{data.title}</p>{data.owner ? <p className="mt-2 text-[10px] text-muted-foreground">{data.owner}{state.pending ? " · Saving…" : ""}</p> : null}</div> }, renderGroupHeader: (group) => titleOf(group), renderSwimlaneHeader: (lane) => titleOf(lane), getCardLabel: titleOf, getGroupLabel: titleOf, getSwimlaneLabel: titleOf, getSearchText: titleOf, onCommand: handleCommand, onPreferencesChange: setPreferences, onAddCard: ({ groupId, swimlaneId }) => setCards((current) => [...current, { id: `new-${current.length}`, groupId, ...(swimlaneId ? { swimlaneId } : {}), rank: `new-${current.length}`, data: { title: "New card" } }]) }}><Kanban className="h-[680px] rounded-xl border" /></KanbanProvider>
 }
 
-const meta = { title: "Components/Kanban", component: Kanban, parameters: { layout: "fullscreen" }, decorators: [(Story) => <div className="min-h-screen bg-background p-6 text-foreground"><Story /></div>] } satisfies Meta<typeof Kanban>
+const meta = {
+  title: "Components/Kanban",
+  component: Kanban,
+  parameters: {
+    layout: "fullscreen",
+    docs: {
+      description: {
+        component:
+          "A controlled kanban board with keyboard-accessible drag and drop, swimlanes, WIP limits, selection, and optimistic mutation commands.",
+      },
+    },
+  },
+  decorators: [
+    (Story) => (
+      <div className="min-h-screen bg-background p-6 text-foreground">
+        <Story />
+      </div>
+    ),
+  ],
+} satisfies Meta<typeof Kanban>
 export default meta
 type Story = StoryObj<typeof meta>
 

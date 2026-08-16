@@ -8,7 +8,7 @@
     "url": "git+https://github.com/entropy-org/entropy-ui-dv.git",
     "directory": "packages/data-views"
   },
-  "homepage": "https://github.com/entropy-org/entropy-ui-dv#readme",
+  "homepage": "https://entropy-org.github.io/entropy-ui-dv/",
   "bugs": {
     "url": "https://github.com/entropy-org/entropy-ui-dv/issues"
   },

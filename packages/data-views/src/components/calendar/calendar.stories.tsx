@@ -288,7 +288,16 @@ function CalendarStory({
 const meta = {
   title: "Components/Calendar",
   component: CalendarStory,
-  parameters: { layout: "fullscreen", a11y: { test: "error" } },
+  parameters: {
+    layout: "fullscreen",
+    a11y: { test: "error" },
+    docs: {
+      description: {
+        component:
+          "A controlled, time-zone-aware calendar with month, week, and agenda modes. Consumers own records and persist every mutation command.",
+      },
+    },
+  },
 } satisfies Meta<typeof CalendarStory>
 
 export default meta
