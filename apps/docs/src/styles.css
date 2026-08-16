@@ -2,20 +2,40 @@
 
 :root {
   color-scheme: light;
-  --site-bg: #fafafa;
-  --site-surface: #ffffff;
-  --site-card: #ffffff;
-  --site-elevated: #f4f4f5;
-  --site-ink: #18181b;
-  --site-muted: #71717a;
-  --site-subtle: #a1a1aa;
-  --site-line: rgb(24 24 27 / 9%);
-  --site-line-strong: rgb(24 24 27 / 15%);
-  --site-hover: rgb(24 24 27 / 5%);
-  --site-brand: #d97706;
-  --site-brand-soft: rgb(217 119 6 / 10%);
-  --site-code: #f4f4f5;
-  --site-shadow: 0 24px 80px rgb(24 24 27 / 9%);
+  /* Keep these semantic tokens identical to entropy-ui/src/index.css. */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.2101 0.0318 264.6645);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.2101 0.0318 264.6645);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.2101 0.0318 264.6645);
+  --primary: oklch(0.6716 0.1368 48.513);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.536 0.0398 196.028);
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.967 0.0029 264.5419);
+  --muted-foreground: oklch(0.551 0.0234 264.3637);
+  --accent: oklch(0.9491 0 0);
+  --accent-foreground: oklch(0.2101 0.0318 264.6645);
+  --destructive: oklch(0.6368 0.2078 25.3313);
+  --border: oklch(0.9276 0.0058 264.5313);
+  --input: oklch(0.9276 0.0058 264.5313);
+  --ring: oklch(0.6716 0.1368 48.513);
+  --radius: 0.625rem;
+  --site-bg: var(--background);
+  --site-surface: var(--card);
+  --site-card: var(--card);
+  --site-elevated: var(--muted);
+  --site-ink: var(--foreground);
+  --site-muted: var(--muted-foreground);
+  --site-subtle: var(--muted-foreground);
+  --site-line: var(--border);
+  --site-line-strong: var(--border);
+  --site-hover: var(--accent);
+  --site-brand: var(--primary);
+  --site-brand-soft: color-mix(in oklab, var(--primary) 12%, transparent);
+  --site-code: var(--card);
+  --site-shadow: 0 24px 80px color-mix(in oklab, var(--foreground) 9%, transparent);
   font-family:
     "IBM Plex Sans Variable",
     ui-sans-serif,
@@ -31,22 +51,27 @@
   text-rendering: optimizeLegibility;
 }
 
-:root.site-dark {
+:root.dark {
   color-scheme: dark;
-  --site-bg: #09090b;
-  --site-surface: #0d0e11;
-  --site-card: #111216;
-  --site-elevated: #18191e;
-  --site-ink: #f4f4f5;
-  --site-muted: #a1a1aa;
-  --site-subtle: #71717a;
-  --site-line: rgb(255 255 255 / 8%);
-  --site-line-strong: rgb(255 255 255 / 14%);
-  --site-hover: rgb(255 255 255 / 5%);
-  --site-brand: #f59e0b;
-  --site-brand-soft: rgb(245 158 11 / 11%);
-  --site-code: #0b0c0f;
-  --site-shadow: 0 32px 100px rgb(0 0 0 / 48%);
+  --background: oklch(0.1797 0.0043 308.1928);
+  --foreground: oklch(0.8109 0 0);
+  --card: oklch(0.1822 0 0);
+  --card-foreground: oklch(0.8109 0 0);
+  --popover: oklch(0.1797 0.0043 308.1928);
+  --popover-foreground: oklch(0.8109 0 0);
+  --primary: oklch(0.7214 0.1337 49.9802);
+  --primary-foreground: oklch(0.1797 0.0043 308.1928);
+  --secondary: oklch(0.594 0.0443 196.0233);
+  --secondary-foreground: oklch(0.1797 0.0043 308.1928);
+  --muted: oklch(0.252 0 0);
+  --muted-foreground: oklch(0.6268 0 0);
+  --accent: oklch(0.3211 0 0);
+  --accent-foreground: oklch(0.8109 0 0);
+  --destructive: oklch(0.594 0.0443 196.0233);
+  --border: oklch(0.252 0 0);
+  --input: oklch(0.252 0 0);
+  --ring: oklch(0.7214 0.1337 49.9802);
+  --site-shadow: 0 32px 100px color-mix(in oklab, black 48%, transparent);
 }
 
 * {
@@ -60,9 +85,7 @@ html {
 body {
   min-width: 320px;
   margin: 0;
-  background:
-    radial-gradient(circle at 72% 8%, rgb(245 158 11 / 5%), transparent 24rem),
-    var(--site-bg);
+  background: var(--site-bg);
   color: var(--site-ink);
 }
 
@@ -81,7 +104,7 @@ a {
 }
 
 ::selection {
-  background: rgb(245 158 11 / 25%);
+  background: color-mix(in oklab, var(--primary) 28%, transparent);
 }
 
 .site-shell {
@@ -252,7 +275,7 @@ a {
   flex: none;
   border-radius: 999px;
   background: var(--site-brand);
-  box-shadow: 0 0 14px rgb(245 158 11 / 55%);
+  box-shadow: 0 0 14px color-mix(in oklab, var(--primary) 55%, transparent);
 }
 
 .hero h1 {
@@ -377,44 +400,28 @@ a {
 
 .example-theme,
 .engine-theme {
-  --edv-background: #0d0e11;
-  --edv-foreground: #e4e4e7;
-  --edv-card: #111216;
-  --edv-card-foreground: #e4e4e7;
-  --edv-popover: #15161b;
-  --edv-popover-foreground: #e4e4e7;
-  --edv-primary: #f59e0b;
-  --edv-primary-foreground: #18181b;
-  --edv-secondary: #27272a;
-  --edv-secondary-foreground: #f4f4f5;
-  --edv-muted: #18191e;
-  --edv-muted-foreground: #a1a1aa;
-  --edv-accent: #24262d;
-  --edv-accent-foreground: #f4f4f5;
-  --edv-border: #27282e;
-  --edv-input: #303138;
-  --edv-ring: #f59e0b;
-  --edv-radius: 0.5rem;
+  --edv-background: var(--background);
+  --edv-foreground: var(--foreground);
+  --edv-card: var(--card);
+  --edv-card-foreground: var(--card-foreground);
+  --edv-popover: var(--popover);
+  --edv-popover-foreground: var(--popover-foreground);
+  --edv-primary: var(--primary);
+  --edv-primary-foreground: var(--primary-foreground);
+  --edv-secondary: var(--secondary);
+  --edv-secondary-foreground: var(--secondary-foreground);
+  --edv-muted: var(--muted);
+  --edv-muted-foreground: var(--muted-foreground);
+  --edv-accent: var(--accent);
+  --edv-accent-foreground: var(--accent-foreground);
+  --edv-border: var(--border);
+  --edv-input: var(--input);
+  --edv-ring: var(--ring);
+  --edv-radius: var(--radius);
   --edv-font-sans:
     "IBM Plex Sans Variable", ui-sans-serif, system-ui, sans-serif;
   --edv-font-heading:
     "IBM Plex Sans Variable", ui-sans-serif, system-ui, sans-serif;
-}
-
-:root:not(.site-dark) .example-theme,
-:root:not(.site-dark) .engine-theme {
-  --edv-background: #ffffff;
-  --edv-foreground: #27272a;
-  --edv-card: #ffffff;
-  --edv-card-foreground: #27272a;
-  --edv-popover: #ffffff;
-  --edv-popover-foreground: #27272a;
-  --edv-muted: #f4f4f5;
-  --edv-muted-foreground: #71717a;
-  --edv-accent: #f4f4f5;
-  --edv-accent-foreground: #18181b;
-  --edv-border: #e4e4e7;
-  --edv-input: #e4e4e7;
 }
 
 .database-example {
@@ -664,7 +671,7 @@ a {
 
 .flow-core {
   padding: 11px;
-  border: 1px solid rgb(245 158 11 / 24%);
+  border: 1px solid color-mix(in oklab, var(--primary) 24%, transparent);
   border-radius: 7px;
   background: var(--site-brand-soft);
 }
@@ -703,15 +710,15 @@ a {
 .theme-code {
   margin: 0;
   padding: 24px;
-  color: #d4d4d8;
+  color: var(--site-ink);
   font-family: "JetBrains Mono", ui-monospace, monospace;
   font-size: 11px;
   line-height: 1.8;
   white-space: pre-wrap;
 }
 
-:root:not(.site-dark) .theme-code {
-  color: #3f3f46;
+:root:not(.dark) .theme-code {
+  color: var(--site-ink);
 }
 
 .install-command {
@@ -795,13 +802,13 @@ a {
   margin: 0;
   padding: 24px;
   overflow: auto;
-  color: #d4d4d8;
+  color: var(--site-ink);
   font-size: 11px;
   line-height: 1.75;
 }
 
-:root:not(.site-dark) .code-window pre {
-  color: #3f3f46;
+:root:not(.dark) .code-window pre {
+  color: var(--site-ink);
 }
 
 .board-card {

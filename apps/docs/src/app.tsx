@@ -95,6 +95,7 @@ export function App() {
   const [engine, setEngine] = useState<ViewTab>("list");
 
   useEffect(() => {
+    document.documentElement.classList.toggle("dark", theme === "dark");
     document.documentElement.classList.toggle("site-dark", theme === "dark");
     localStorage.setItem("edv-docs-theme-v2", theme);
   }, [theme]);
