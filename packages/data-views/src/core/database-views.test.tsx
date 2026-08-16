@@ -35,6 +35,7 @@ describe("DatabaseViews", () => {
     const onActiveViewIdChange = vi.fn()
     const onViewsChange = vi.fn()
     const onIntent = vi.fn()
+    const onCreateViewRequest = vi.fn()
     render(
       <DatabaseViews
         source={{ mode: "client", id: "tasks", label: "Tasks", records }}
@@ -44,12 +45,16 @@ describe("DatabaseViews", () => {
         onActiveViewIdChange={onActiveViewIdChange}
         onViewsChange={onViewsChange}
         onIntent={onIntent}
+        onCreateViewRequest={onCreateViewRequest}
         renderView={({ view }) => <div>Surface: {view.name}</div>}
       />
     )
 
     expect(screen.getByRole("heading", { name: "Tasks" })).toBeInTheDocument()
     expect(screen.getByText("Surface: All")).toBeInTheDocument()
+    expect(screen.getByRole("tablist", { name: "Data views" })).not.toContainElement(
+      screen.getByRole("button", { name: "Add a view" })
+    )
     await user.click(screen.getByRole("tab", { name: "Dates" }))
     expect(onActiveViewIdChange).toHaveBeenCalledWith("calendar")
     await user.type(screen.getByRole("textbox", { name: "Search All" }), "ship")

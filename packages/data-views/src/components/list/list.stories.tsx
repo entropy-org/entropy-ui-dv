@@ -186,7 +186,15 @@ function InteractiveSurface({
 const meta = {
   title: "Components/Data List",
   component: DataList,
-  parameters: { layout: "fullscreen" },
+  parameters: {
+    layout: "fullscreen",
+    docs: {
+      description: {
+        component:
+          "A controlled list for local or server-backed records with grouping, hierarchy, selection, editing, pagination, and row virtualization.",
+      },
+    },
+  },
 } satisfies Meta<typeof DataList>
 
 export default meta

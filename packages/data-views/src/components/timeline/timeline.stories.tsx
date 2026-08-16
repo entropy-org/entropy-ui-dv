@@ -8,6 +8,12 @@ const meta: Meta<typeof Timeline> = {
   component: Timeline,
   parameters: {
     layout: "fullscreen",
+    docs: {
+      description: {
+        component:
+          "A controlled, virtualized timeline with zoom levels, drag and resize interactions, nested records, dependencies, and an optional sidebar.",
+      },
+    },
   },
 }
 
