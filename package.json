@@ -1,0 +1,34 @@
+{
+  "name": "entropy-data-views-workspace",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "pnpm --filter @entropy-ui/data-views build",
+    "typecheck": "pnpm --filter @entropy-ui/data-views typecheck",
+    "test": "pnpm --filter @entropy-ui/data-views test",
+    "test:storybook": "pnpm --filter @entropy-ui/data-views test:storybook",
+    "lint": "pnpm --filter @entropy-ui/data-views lint",
+    "pack:check": "pnpm --filter @entropy-ui/data-views pack:check",
+    "fixtures:react18": "pnpm pack:check && pnpm --dir fixtures/react18-vite install --ignore-workspace --no-frozen-lockfile && pnpm --ignore-workspace --dir fixtures/react18-vite build",
+    "fixtures:build": "pnpm fixtures:react18 && pnpm --filter @entropy-ui-fixtures/vite-app build && pnpm --filter @entropy-ui-fixtures/next-app build",
+    "storybook:build": "pnpm --filter @entropy-ui/data-views storybook:build",
+    "bundle:check": "pnpm --filter @entropy-ui/data-views bundle:check",
+    "build:verify": "pnpm --filter @entropy-ui/data-views build:verify",
+    "package:lint": "pnpm --filter @entropy-ui/data-views package:lint",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "publish:next": "changeset publish --tag next",
+    "publish:latest": "changeset publish",
+    "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm build:verify && pnpm bundle:check && pnpm fixtures:build && pnpm storybook:build && pnpm test:storybook && pnpm package:lint && pnpm pack:check"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.29.7",
+    "@eslint/js": "^10.0.0",
+    "eslint": "^10.0.0",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "globals": "^17.0.0",
+    "prettier": "^3.8.3",
+    "typescript": "~6.0.0",
+    "typescript-eslint": "^8.56.0"
+  }
+}

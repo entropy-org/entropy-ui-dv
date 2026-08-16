@@ -1,0 +1,8 @@
+node_modules/
+dist/
+coverage/
+storybook-static/
+artifacts/
+.next/
+*.tsbuildinfo
+.DS_Store

@@ -1,0 +1,1515 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "C:\\dev\\entropy-ui",
+  "sourceRemote": "git@github.com:entropy-org/vite-client.git",
+  "commit": "1966cba3be470d73b091ae32101cbbaf87f11826",
+  "generatedAt": "2026-08-16T15:56:31.092Z",
+  "roots": [
+    "src/components/calendar",
+    "src/components/kanban",
+    "src/components/list",
+    "src/components/timeline",
+    "src/components/ui/badge.tsx",
+    "src/components/ui/button.tsx",
+    "src/components/ui/checkbox.tsx",
+    "src/components/ui/input.tsx",
+    "src/components/ui/label.tsx",
+    "src/components/ui/popover.tsx",
+    "src/components/ui/select.tsx",
+    "src/components/ui/separator.tsx",
+    "src/components/ui/sheet.tsx",
+    "src/components/ui/skeleton.tsx",
+    "src/components/ui/switch.tsx",
+    "src/components/ui/tooltip.tsx",
+    "src/hooks/use-shift-wheel.ts",
+    "src/lib/utils.ts"
+  ],
+  "fileCount": 297,
+  "files": [
+    {
+      "path": "src/components/calendar/Calendar.stories.tsx",
+      "gitBlob": "543040d683917b7862011069d8fea45fb32af04e",
+      "bytes": 10497
+    },
+    {
+      "path": "src/components/calendar/README.md",
+      "gitBlob": "6cb1ad2b91c22d6b1a6f186180f7e414226c6949",
+      "bytes": 13823
+    },
+    {
+      "path": "src/components/calendar/TANSTACK_QUERY_INTEGRATION.md",
+      "gitBlob": "46f8e662ec8092e13d6b3d658288e10c7c3ad883",
+      "bytes": 4695
+    },
+    {
+      "path": "src/components/calendar/components/agenda/calendar-agenda-event.tsx",
+      "gitBlob": "73ac44a019a027d43405bdcdf9581070cc5dd00b",
+      "bytes": 9974
+    },
+    {
+      "path": "src/components/calendar/components/agenda/calendar-agenda-sidebar.tsx",
+      "gitBlob": "2557160cf09b4c752027134c3ea6b4397d27b0b8",
+      "bytes": 10579
+    },
+    {
+      "path": "src/components/calendar/components/agenda/calendar-agenda-span-select.test.tsx",
+      "gitBlob": "9f58b2edf77be01fb7a3c58fb713410186b57b56",
+      "bytes": 2265
+    },
+    {
+      "path": "src/components/calendar/components/agenda/calendar-agenda-span-select.tsx",
+      "gitBlob": "463d39745828965e2ac74a57c94260ceb6aef551",
+      "bytes": 1974
+    },
+    {
+      "path": "src/components/calendar/components/agenda/calendar-agenda-view.test.tsx",
+      "gitBlob": "23b973ae2bfeb5b3515796448359d4f702b0b5df",
+      "bytes": 13061
+    },
+    {
+      "path": "src/components/calendar/components/agenda/calendar-agenda-view.tsx",
+      "gitBlob": "6821cd442950c7cb279696c339fb712ab0529c7d",
+      "bytes": 24786
+    },
+    {
+      "path": "src/components/calendar/components/calendar-accessibility-performance.test.tsx",
+      "gitBlob": "94984c51dae8abf7d13ca918685c601b0257f5ca",
+      "bytes": 12366
+    },
+    {
+      "path": "src/components/calendar/components/calendar-components.test.tsx",
+      "gitBlob": "de76d5845721da33d2e35e550cd4ef46047c8a35",
+      "bytes": 4911
+    },
+    {
+      "path": "src/components/calendar/components/calendar-controls.tsx",
+      "gitBlob": "4b0d1f0e0e38f9f9f2d5ea491c0b357160f4bc6a",
+      "bytes": 6130
+    },
+    {
+      "path": "src/components/calendar/components/calendar-data-state.tsx",
+      "gitBlob": "706d9a90829619e1a73958e1999af75610743148",
+      "bytes": 2148
+    },
+    {
+      "path": "src/components/calendar/components/calendar-date-view.tsx",
+      "gitBlob": "b41358c3b1538f27359f1ab7b596bb20a5cecff6",
+      "bytes": 11688
+    },
+    {
+      "path": "src/components/calendar/components/calendar-day-cell-container.tsx",
+      "gitBlob": "13c57694d0e5a667900b567c7f15648d1a3eee6a",
+      "bytes": 2159
+    },
+    {
+      "path": "src/components/calendar/components/calendar-day-cell.tsx",
+      "gitBlob": "0d23de1bc3f1046dddf8b7ed51eb18d7138a96cd",
+      "bytes": 2376
+    },
+    {
+      "path": "src/components/calendar/components/calendar-empty-state.tsx",
+      "gitBlob": "7fa0c04bb6e7b2fef8661795c42b96d7d4006b74",
+      "bytes": 1764
+    },
+    {
+      "path": "src/components/calendar/components/calendar-event-container.tsx",
+      "gitBlob": "cec2802a0fb9cafe3a22cb6235ae08bdd8fe90c8",
+      "bytes": 7007
+    },
+    {
+      "path": "src/components/calendar/components/calendar-event.tsx",
+      "gitBlob": "3d4f3fba75c5597098c5da21b863899e6b1bec0b",
+      "bytes": 5881
+    },
+    {
+      "path": "src/components/calendar/components/calendar-overflow-popover.tsx",
+      "gitBlob": "382d3b499473ffe1d472fcec60c24ddce429cc2d",
+      "bytes": 3046
+    },
+    {
+      "path": "src/components/calendar/components/calendar-production-data.test.tsx",
+      "gitBlob": "68ed658a29546f2efe428167f3c2977f45cf7097",
+      "bytes": 3635
+    },
+    {
+      "path": "src/components/calendar/components/calendar-render-error-boundary.tsx",
+      "gitBlob": "7cb858f09862fda470e8c5e59dce32839ec70f38",
+      "bytes": 1955
+    },
+    {
+      "path": "src/components/calendar/components/calendar-search.tsx",
+      "gitBlob": "8b039e1d9d36544c5abcceb25e826fe5b3232ef6",
+      "bytes": 2336
+    },
+    {
+      "path": "src/components/calendar/components/calendar-settings.test.tsx",
+      "gitBlob": "c0caa7124e28f683c179f90392c5dd735acac3e9",
+      "bytes": 6688
+    },
+    {
+      "path": "src/components/calendar/components/calendar-settings.tsx",
+      "gitBlob": "08c0f3acb8c20a162353ea0d1a68c517624e4ef0",
+      "bytes": 12717
+    },
+    {
+      "path": "src/components/calendar/components/calendar-shift-wheel.test.tsx",
+      "gitBlob": "1fbd3468d98755cc9dcc0017dcc8cbb5f20efcf7",
+      "bytes": 3197
+    },
+    {
+      "path": "src/components/calendar/components/calendar-view-select.tsx",
+      "gitBlob": "fa1896eec3d94909ce7beba556171bb0de0ece02",
+      "bytes": 1862
+    },
+    {
+      "path": "src/components/calendar/components/calendar-weekday-header.tsx",
+      "gitBlob": "3085cfb6d990bc4e10c634ddb4fed1b99e52be12",
+      "bytes": 1256
+    },
+    {
+      "path": "src/components/calendar/components/calendar.test.tsx",
+      "gitBlob": "1625ba8a91bf90d17c56132ae4580a4e1ae87dc5",
+      "bytes": 13516
+    },
+    {
+      "path": "src/components/calendar/components/calendar.tsx",
+      "gitBlob": "04cf96027597114f2bc53da3ebd1f92c510cf480",
+      "bytes": 11476
+    },
+    {
+      "path": "src/components/calendar/constants.test.ts",
+      "gitBlob": "89c7a2776b1e0627c4358e3ff613849ff42ff5a3",
+      "bytes": 1072
+    },
+    {
+      "path": "src/components/calendar/constants.ts",
+      "gitBlob": "fd9cca68c18294657610ebb7e30a1012c8659ce8",
+      "bytes": 2007
+    },
+    {
+      "path": "src/components/calendar/context/calendar-config-context.ts",
+      "gitBlob": "612c8a96d1668a2ee2c05e7c10c3b51c3db2e1ad",
+      "bytes": 439
+    },
+    {
+      "path": "src/components/calendar/context/calendar-context.ts",
+      "gitBlob": "d05d8e9c3574c13473957ce1b734ef82bc09654f",
+      "bytes": 513
+    },
+    {
+      "path": "src/components/calendar/context/calendar-provider.test.tsx",
+      "gitBlob": "e37650d2094b9ec674c3716d715a73ca5bd0f7f6",
+      "bytes": 13529
+    },
+    {
+      "path": "src/components/calendar/context/calendar-provider.tsx",
+      "gitBlob": "fce023bc44a6e2a60a65ca82ec8ccac2d72ed69d",
+      "bytes": 6425
+    },
+    {
+      "path": "src/components/calendar/hooks/use-calendar-agenda-interactions.ts",
+      "gitBlob": "5c35c91b51fc882cfa98da359c2483be71f85262",
+      "bytes": 18288
+    },
+    {
+      "path": "src/components/calendar/hooks/use-calendar-command-actions.test.tsx",
+      "gitBlob": "fbe89f8986732fd2552b0ccd16b4afa505c31406",
+      "bytes": 5245
+    },
+    {
+      "path": "src/components/calendar/hooks/use-calendar-command-actions.ts",
+      "gitBlob": "7711b829a6602e87f12b8a654e6d0a6aa840e952",
+      "bytes": 9430
+    },
+    {
+      "path": "src/components/calendar/hooks/use-calendar-keyboard.test.tsx",
+      "gitBlob": "9b7aec68f1a94981a5fcf99a7c9467ea794120c7",
+      "bytes": 5586
+    },
+    {
+      "path": "src/components/calendar/hooks/use-calendar-keyboard.ts",
+      "gitBlob": "847dd40ab284d67ba6e38e67787d2a49d1a5a5c1",
+      "bytes": 11892
+    },
+    {
+      "path": "src/components/calendar/hooks/use-calendar-model.ts",
+      "gitBlob": "1f59e7c6188f025eea3f307e9218008481239383",
+      "bytes": 2403
+    },
+    {
+      "path": "src/components/calendar/hooks/use-calendar-navigation.test.tsx",
+      "gitBlob": "23a69b4ff18434df242e14cb7c1a4ec595e7808e",
+      "bytes": 1857
+    },
+    {
+      "path": "src/components/calendar/hooks/use-calendar-navigation.ts",
+      "gitBlob": "97996dbfbe66b2ee4d3fc887c55f40fef09b1ec6",
+      "bytes": 3117
+    },
+    {
+      "path": "src/components/calendar/hooks/use-calendar-pointer-interactions.ts",
+      "gitBlob": "e3bb0f4915fe1fd540f10b6b3aef6039fc36c3cf",
+      "bytes": 14916
+    },
+    {
+      "path": "src/components/calendar/hooks/use-calendar-preferences.ts",
+      "gitBlob": "51d63227fea3615079e078e5a93805658fc391e0",
+      "bytes": 825
+    },
+    {
+      "path": "src/components/calendar/hooks/use-calendar-selectors.ts",
+      "gitBlob": "dac3d7b01cdd68a7dfed1d30f6914b331b7867a9",
+      "bytes": 639
+    },
+    {
+      "path": "src/components/calendar/hooks/use-calendar-store.ts",
+      "gitBlob": "a66c2ad85945d0d013e3c7869210af9e09ebf132",
+      "bytes": 411
+    },
+    {
+      "path": "src/components/calendar/index.ts",
+      "gitBlob": "6e340bf3f43dea9a5f8a8261a2b4f74d1943b5c3",
+      "bytes": 4415
+    },
+    {
+      "path": "src/components/calendar/public-api.test.tsx",
+      "gitBlob": "8b1a52031a6c2669d42ccc71dc7d07abb09bf451",
+      "bytes": 1327
+    },
+    {
+      "path": "src/components/calendar/store/command-utils.test.ts",
+      "gitBlob": "ca76ad14c2ce915131f61d445c8828d71e41d706",
+      "bytes": 3315
+    },
+    {
+      "path": "src/components/calendar/store/command-utils.ts",
+      "gitBlob": "99da995d97e2df6d4bb999560ee1ee1904ad2daf",
+      "bytes": 3781
+    },
+    {
+      "path": "src/components/calendar/store/create-store.test.ts",
+      "gitBlob": "51f8d61b11a867249ba7843caba30a68c6a9c4f9",
+      "bytes": 1760
+    },
+    {
+      "path": "src/components/calendar/store/create-store.ts",
+      "gitBlob": "4741143b8cee29243894f9869ba675d71d200127",
+      "bytes": 1629
+    },
+    {
+      "path": "src/components/calendar/store/selectors.test.ts",
+      "gitBlob": "f510e0d4286f0e5e859e79ff0b9d6eca34896d32",
+      "bytes": 3525
+    },
+    {
+      "path": "src/components/calendar/store/selectors.ts",
+      "gitBlob": "5ffa5e4e23b66da47729fa9dd05af68c1289ded2",
+      "bytes": 2457
+    },
+    {
+      "path": "src/components/calendar/store/slice-types.ts",
+      "gitBlob": "ffc0280be10114afac0545fd81850ff6321f12f2",
+      "bytes": 364
+    },
+    {
+      "path": "src/components/calendar/store/slices/history-slice.test.ts",
+      "gitBlob": "a682756825b7db5c15eac1a613aba0bb5c7a674e",
+      "bytes": 8872
+    },
+    {
+      "path": "src/components/calendar/store/slices/history-slice.ts",
+      "gitBlob": "d52eb910100054ad233b75a14bf437e793cdc867",
+      "bytes": 11812
+    },
+    {
+      "path": "src/components/calendar/store/slices/interaction-slice.test.ts",
+      "gitBlob": "7da9c8d6427cd0d2ec8286b0a2d78325990c195b",
+      "bytes": 3730
+    },
+    {
+      "path": "src/components/calendar/store/slices/interaction-slice.ts",
+      "gitBlob": "ae73b4bbbd64c92ad61b3b2fad8e7f5e769c1a25",
+      "bytes": 3882
+    },
+    {
+      "path": "src/components/calendar/store/slices/selection-slice.test.ts",
+      "gitBlob": "166bf388bf6f53e20b2d81c89fa3c863c6535c65",
+      "bytes": 4105
+    },
+    {
+      "path": "src/components/calendar/store/slices/selection-slice.ts",
+      "gitBlob": "71e80e4e88f9c40094a69c353efe4e1ed30e13b9",
+      "bytes": 5375
+    },
+    {
+      "path": "src/components/calendar/store/slices/ui-slice.test.ts",
+      "gitBlob": "d63f26877a3c7c3ff998e830bcb2937e5c137452",
+      "bytes": 1526
+    },
+    {
+      "path": "src/components/calendar/store/slices/ui-slice.ts",
+      "gitBlob": "c13a02ff4c3045f3d5328eb11eb14482f314a48e",
+      "bytes": 1792
+    },
+    {
+      "path": "src/components/calendar/store/slices/viewport-slice.test.ts",
+      "gitBlob": "8206cb740ff6d37dcb96214be64943ad20a5427d",
+      "bytes": 2607
+    },
+    {
+      "path": "src/components/calendar/store/slices/viewport-slice.ts",
+      "gitBlob": "9fbc85674da423bfcbda0f300ca5c0902c8009af",
+      "bytes": 3985
+    },
+    {
+      "path": "src/components/calendar/test/fixtures.ts",
+      "gitBlob": "1e5ceef3f5360d91a7975da7e518f90fcd41e85c",
+      "bytes": 2151
+    },
+    {
+      "path": "src/components/calendar/test/render-calendar.tsx",
+      "gitBlob": "5553f9c9187655939ab16155083e205fa825e1c9",
+      "bytes": 1916
+    },
+    {
+      "path": "src/components/calendar/test/setup.ts",
+      "gitBlob": "aa14f5df89c7a784c05c3d390ba17a692e537eb6",
+      "bytes": 1585
+    },
+    {
+      "path": "src/components/calendar/types.ts",
+      "gitBlob": "476c77e4494d0488f6db82a5913b72c70fbf3c1d",
+      "bytes": 19223
+    },
+    {
+      "path": "src/components/calendar/utils/agenda.test.ts",
+      "gitBlob": "9816d88c8891a9d34a00b2bca7110123c1f5b9de",
+      "bytes": 5525
+    },
+    {
+      "path": "src/components/calendar/utils/agenda.ts",
+      "gitBlob": "691cd5340583a4ccd626135e8afaeaeab2076a37",
+      "bytes": 11598
+    },
+    {
+      "path": "src/components/calendar/utils/calendar-model.test.ts",
+      "gitBlob": "59664569bacd824ca45eca07694827dc34c4cd80",
+      "bytes": 3151
+    },
+    {
+      "path": "src/components/calendar/utils/calendar-model.ts",
+      "gitBlob": "398f46a0793b8ef705c35f2fb64586a929f6ce39",
+      "bytes": 7802
+    },
+    {
+      "path": "src/components/calendar/utils/data-integration.test.ts",
+      "gitBlob": "f7c343cc6a551ba68735698567633a1921700340",
+      "bytes": 7697
+    },
+    {
+      "path": "src/components/calendar/utils/data-integration.ts",
+      "gitBlob": "0f667145c1e7dffef5edd29ce8623e9618a74fa8",
+      "bytes": 6896
+    },
+    {
+      "path": "src/components/calendar/utils/date-engine.test.ts",
+      "gitBlob": "57d864fa64d7eb8e0b2fb871eeecb87648ae59d6",
+      "bytes": 2639
+    },
+    {
+      "path": "src/components/calendar/utils/date-engine.ts",
+      "gitBlob": "23effb282032f65d389be804159213ad374b2a42",
+      "bytes": 5756
+    },
+    {
+      "path": "src/components/calendar/utils/date-grid.test.ts",
+      "gitBlob": "4de00460e1dd2e26e64de7ddccb967c767df64a7",
+      "bytes": 2322
+    },
+    {
+      "path": "src/components/calendar/utils/date-grid.ts",
+      "gitBlob": "6ef24cd1a7e8d3b8900dfd5c8136381c56f75ad7",
+      "bytes": 3611
+    },
+    {
+      "path": "src/components/calendar/utils/date-lanes.test.ts",
+      "gitBlob": "95a8b8264ad5258ac43f055c7410dd44bee045d4",
+      "bytes": 4313
+    },
+    {
+      "path": "src/components/calendar/utils/date-lanes.ts",
+      "gitBlob": "b8491b2635739946df2ca34183c7ea6b688906bf",
+      "bytes": 4083
+    },
+    {
+      "path": "src/components/calendar/utils/date-range.test.ts",
+      "gitBlob": "8b0a7277d020d457f170bbd9a78a3b9b2a37e28d",
+      "bytes": 1964
+    },
+    {
+      "path": "src/components/calendar/utils/date-range.ts",
+      "gitBlob": "1bc20bc0fc55e5c22e7f38be184ccc8ae2273251",
+      "bytes": 2807
+    },
+    {
+      "path": "src/components/calendar/utils/invariants.test.ts",
+      "gitBlob": "0cebe0e39fb6ed5ab61e24a6ec803fdd1fb771f2",
+      "bytes": 3678
+    },
+    {
+      "path": "src/components/calendar/utils/invariants.ts",
+      "gitBlob": "c302e0cca2f169f259011654a8beaeb724787ac5",
+      "bytes": 4664
+    },
+    {
+      "path": "src/components/calendar/utils/mutations.test.ts",
+      "gitBlob": "1876e99373c55e97e090665addfcff0423157f80",
+      "bytes": 2777
+    },
+    {
+      "path": "src/components/calendar/utils/mutations.ts",
+      "gitBlob": "ce58cf9d331bb8bcf668294395e14ad61a118bf7",
+      "bytes": 2188
+    },
+    {
+      "path": "src/components/calendar/utils/normalize-items.test.ts",
+      "gitBlob": "7c39803efdd508c8d1506fcd096442699f66ec46",
+      "bytes": 3491
+    },
+    {
+      "path": "src/components/calendar/utils/normalize-items.ts",
+      "gitBlob": "da4f5e5c22c90485d8527142adf80366b60991f5",
+      "bytes": 2297
+    },
+    {
+      "path": "src/components/calendar/utils/position.test.ts",
+      "gitBlob": "8a210021767a916d9b2cae57cbc5925fb87496ff",
+      "bytes": 1046
+    },
+    {
+      "path": "src/components/calendar/utils/position.ts",
+      "gitBlob": "6a50630ec68ef4220d367593f71f4cbeaac3e8fe",
+      "bytes": 1569
+    },
+    {
+      "path": "src/components/calendar/utils/preferences.test.ts",
+      "gitBlob": "95e036600b9f70b4aedb8610d84b54499f1fddaa",
+      "bytes": 5285
+    },
+    {
+      "path": "src/components/calendar/utils/preferences.ts",
+      "gitBlob": "a3d3220865e3199b770579c7b06acd3fdcf05401",
+      "bytes": 3667
+    },
+    {
+      "path": "src/components/calendar/utils/search.test.ts",
+      "gitBlob": "4c8fd04dc2ad2ef718fb383535092f60c325d6dd",
+      "bytes": 1609
+    },
+    {
+      "path": "src/components/calendar/utils/search.ts",
+      "gitBlob": "c398ae23603370f116592e1d61a537d6b9c7dbfb",
+      "bytes": 1694
+    },
+    {
+      "path": "src/components/kanban/CHANGELOG.md",
+      "gitBlob": "5012522cc6ca80cdd80b64a128150e8e1bd36f5f",
+      "bytes": 1564
+    },
+    {
+      "path": "src/components/kanban/README.md",
+      "gitBlob": "142bcbf9d26097ddbbfaf3bb4b99d37a2890d576",
+      "bytes": 8357
+    },
+    {
+      "path": "src/components/kanban/TANSTACK_QUERY.md",
+      "gitBlob": "2b1859cbbc05d0928801bf4f6a939d236aaa405e",
+      "bytes": 8957
+    },
+    {
+      "path": "src/components/kanban/components/kanban-card.tsx",
+      "gitBlob": "65eb33cb1ad5df8a2a02911dff3423e55ab60b23",
+      "bytes": 4705
+    },
+    {
+      "path": "src/components/kanban/components/kanban-controls.tsx",
+      "gitBlob": "9b22dc8ea701d5933caea2f6ab858b0c7dcf5431",
+      "bytes": 5272
+    },
+    {
+      "path": "src/components/kanban/components/kanban-data-status.tsx",
+      "gitBlob": "a3650e3448bdedf07d0091f40b92c194e9b7ea3a",
+      "bytes": 2167
+    },
+    {
+      "path": "src/components/kanban/components/kanban-empty-state.tsx",
+      "gitBlob": "0062e6f844b91ab979998203a2cd00852845bc7b",
+      "bytes": 1290
+    },
+    {
+      "path": "src/components/kanban/components/kanban-group-header.tsx",
+      "gitBlob": "dfa63196bf108598a1c341b3ce09d5611203c447",
+      "bytes": 2996
+    },
+    {
+      "path": "src/components/kanban/components/kanban-intersection.tsx",
+      "gitBlob": "452e1dbe02dc2402d9df0ec147dd26522ad2e06c",
+      "bytes": 7135
+    },
+    {
+      "path": "src/components/kanban/components/kanban-loading.tsx",
+      "gitBlob": "932df0ddbe44c8c08fac80b4ad80767afecc06ae",
+      "bytes": 762
+    },
+    {
+      "path": "src/components/kanban/components/kanban-pagination.tsx",
+      "gitBlob": "f3e64a44ed964cfc9afb128a6aafc09c614ce7d8",
+      "bytes": 2744
+    },
+    {
+      "path": "src/components/kanban/components/kanban-render-error-boundary.tsx",
+      "gitBlob": "a313b06763d0fef6762799617c8c26a43d6b6037",
+      "bytes": 1609
+    },
+    {
+      "path": "src/components/kanban/components/kanban-search.tsx",
+      "gitBlob": "c4de24bfbd081e77fe36e504ae20c176d8fb9889",
+      "bytes": 2202
+    },
+    {
+      "path": "src/components/kanban/components/kanban-settings.tsx",
+      "gitBlob": "b8ddc637f67e39280eadb5c63a946dd4d7f42541",
+      "bytes": 3230
+    },
+    {
+      "path": "src/components/kanban/components/kanban-swimlane-header.tsx",
+      "gitBlob": "dc139db09dc7ee07a801cb9d75b8afcf05848c8c",
+      "bytes": 1380
+    },
+    {
+      "path": "src/components/kanban/components/kanban.test.tsx",
+      "gitBlob": "013688bf9b7b8670a945a250cc47a17c73a539d0",
+      "bytes": 13209
+    },
+    {
+      "path": "src/components/kanban/components/kanban.tsx",
+      "gitBlob": "ac28c4e0027f9ad8021596c4a060fd95b43941bb",
+      "bytes": 31613
+    },
+    {
+      "path": "src/components/kanban/constants.ts",
+      "gitBlob": "ab189f542fe32c31e4eefd692f7b8e38c4d0d2b6",
+      "bytes": 1222
+    },
+    {
+      "path": "src/components/kanban/context/kanban-config-context.ts",
+      "gitBlob": "9f8e1a5e72bf117d25795462a2ae99b411ceb110",
+      "bytes": 386
+    },
+    {
+      "path": "src/components/kanban/context/kanban-context.ts",
+      "gitBlob": "f6b28c040d84cd974b350c0c307b0219836595a4",
+      "bytes": 383
+    },
+    {
+      "path": "src/components/kanban/context/kanban-data-context.ts",
+      "gitBlob": "3df1248c64f163ffcc9471b90a1ca28c7127e18d",
+      "bytes": 601
+    },
+    {
+      "path": "src/components/kanban/context/kanban-mutation-lifecycle.test.tsx",
+      "gitBlob": "3ef9577395bdc8c05e765ccc74c0194efa005f0e",
+      "bytes": 7832
+    },
+    {
+      "path": "src/components/kanban/context/kanban-provider.test.tsx",
+      "gitBlob": "d8f71f0bf14f9eaa6e1cd92e564ba9e0fa9077ac",
+      "bytes": 1856
+    },
+    {
+      "path": "src/components/kanban/context/kanban-provider.tsx",
+      "gitBlob": "04d4c5cf3c4589495c17201dafdc2dec2819001f",
+      "bytes": 7298
+    },
+    {
+      "path": "src/components/kanban/hooks/use-kanban-command-actions.ts",
+      "gitBlob": "bf6b48c4009818a1cf90f70eb65380aee192b6e1",
+      "bytes": 9562
+    },
+    {
+      "path": "src/components/kanban/hooks/use-kanban-keyboard.ts",
+      "gitBlob": "434439e4ec87c097ad376283814c49d607d5c358",
+      "bytes": 11117
+    },
+    {
+      "path": "src/components/kanban/hooks/use-kanban-model.ts",
+      "gitBlob": "ad471f47de13a8aac12052f104ef7a6ede589a74",
+      "bytes": 3059
+    },
+    {
+      "path": "src/components/kanban/hooks/use-kanban-preferences.ts",
+      "gitBlob": "8418f6a429f24f78e30b33d5f3e9cc8836ccf7da",
+      "bytes": 1615
+    },
+    {
+      "path": "src/components/kanban/hooks/use-kanban-store.ts",
+      "gitBlob": "62d7a92635e1889cee1568fa5dea4dc40548664c",
+      "bytes": 309
+    },
+    {
+      "path": "src/components/kanban/index.ts",
+      "gitBlob": "d5b62654ca7a2ffb096bd4d87be417c73c5a9df9",
+      "bytes": 713
+    },
+    {
+      "path": "src/components/kanban/kanban.stories.tsx",
+      "gitBlob": "e00f560bd1e31632b3a6cd40b6fe6b62695231ac",
+      "bytes": 6240
+    },
+    {
+      "path": "src/components/kanban/public-api.test.tsx",
+      "gitBlob": "dd916e029f1d432f31e67109a138d82792bfb818",
+      "bytes": 1092
+    },
+    {
+      "path": "src/components/kanban/store/create-store.test.ts",
+      "gitBlob": "102c57aa5892ecdba8ef68bae274b89cf3bad7da",
+      "bytes": 2163
+    },
+    {
+      "path": "src/components/kanban/store/create-store.ts",
+      "gitBlob": "6631b9044db6b4e4f303077a92b3100330774ce5",
+      "bytes": 6195
+    },
+    {
+      "path": "src/components/kanban/store/selectors.ts",
+      "gitBlob": "a5b0035af42a4b2d437297ca6e39b10f16f40252",
+      "bytes": 1067
+    },
+    {
+      "path": "src/components/kanban/test/fixtures.ts",
+      "gitBlob": "2fbe5b0f1e71460bf0f0629328280ce939c14fa7",
+      "bytes": 1630
+    },
+    {
+      "path": "src/components/kanban/types.ts",
+      "gitBlob": "5d4700f7ec7f86aea41161a4e3e38484268e63d0",
+      "bytes": 16758
+    },
+    {
+      "path": "src/components/kanban/utils/commands.ts",
+      "gitBlob": "4d6d0bad32170d6824b7db966253cdc54ad98930",
+      "bytes": 2191
+    },
+    {
+      "path": "src/components/kanban/utils/display-model.ts",
+      "gitBlob": "64d61404fbb1840416a530708429fc6ef367d26d",
+      "bytes": 3204
+    },
+    {
+      "path": "src/components/kanban/utils/kanban-utils.test.ts",
+      "gitBlob": "87c4abab13643abf36421aecdc1452436575e071",
+      "bytes": 3550
+    },
+    {
+      "path": "src/components/kanban/utils/neighbors.ts",
+      "gitBlob": "ffbdc662615b7cefc67aaea26a9fa9133f35f6e6",
+      "bytes": 472
+    },
+    {
+      "path": "src/components/kanban/utils/normalize.test.ts",
+      "gitBlob": "52808e238cd498be7afbc9ed820d5aa766448089",
+      "bytes": 1970
+    },
+    {
+      "path": "src/components/kanban/utils/normalize.ts",
+      "gitBlob": "809015330c420441fa6df510b75444f9f4c8fabc",
+      "bytes": 5678
+    },
+    {
+      "path": "src/components/kanban/utils/optimistic-ledger.test.ts",
+      "gitBlob": "20dba453802157ca02f75b54d203753cf13c379b",
+      "bytes": 2131
+    },
+    {
+      "path": "src/components/kanban/utils/optimistic-ledger.ts",
+      "gitBlob": "a3b3fca3a061d10401061ad1a55e896f6688eac5",
+      "bytes": 3274
+    },
+    {
+      "path": "src/components/kanban/utils/reconciliation.ts",
+      "gitBlob": "8efbcd9c681471dd717481fc3aae321983840b3c",
+      "bytes": 4878
+    },
+    {
+      "path": "src/components/kanban/utils/search.ts",
+      "gitBlob": "353e805637ddbf51e99be7630eb3e9f271060fe3",
+      "bytes": 464
+    },
+    {
+      "path": "src/components/kanban/utils/wip.ts",
+      "gitBlob": "84e916bbe0d7d1712fbbb2f09733a989207ec574",
+      "bytes": 1477
+    },
+    {
+      "path": "src/components/list/README.md",
+      "gitBlob": "1fa869076c9a0daba4443b7c8ab28cbb7dd83470",
+      "bytes": 8176
+    },
+    {
+      "path": "src/components/list/TANSTACK_QUERY.md",
+      "gitBlob": "fd56d71fa68a4d7e4cd2fcc784f9a1ffad5e74a2",
+      "bytes": 5679
+    },
+    {
+      "path": "src/components/list/components/data-list-controls.tsx",
+      "gitBlob": "976529a7d455985dafa83487917620337d8d7395",
+      "bytes": 3318
+    },
+    {
+      "path": "src/components/list/components/data-list-group-header.tsx",
+      "gitBlob": "03ce89f2fcbe83a4e8e137291962c96af8bb8e6f",
+      "bytes": 2782
+    },
+    {
+      "path": "src/components/list/components/data-list-pagination.tsx",
+      "gitBlob": "53282be96cde95918b054944cf0e370235c7ea45",
+      "bytes": 3605
+    },
+    {
+      "path": "src/components/list/components/data-list-render-boundary.tsx",
+      "gitBlob": "b59df23491603ae64bfa3d25870fc3124761cc0e",
+      "bytes": 1191
+    },
+    {
+      "path": "src/components/list/components/data-list-row.tsx",
+      "gitBlob": "9ad09f5c7e990bb47ad3c49e8912cee8ab09de41",
+      "bytes": 18845
+    },
+    {
+      "path": "src/components/list/components/data-list-state-surface.tsx",
+      "gitBlob": "877e0acecab9f7536c4aad2b947725484154c578",
+      "bytes": 1909
+    },
+    {
+      "path": "src/components/list/components/data-list.test.tsx",
+      "gitBlob": "330b3918527830d384e88ce02374ffd5f85c23b3",
+      "bytes": 23012
+    },
+    {
+      "path": "src/components/list/components/data-list.tsx",
+      "gitBlob": "71c1cf56d890bb957ef2fb980fb6ea3c542807d1",
+      "bytes": 57833
+    },
+    {
+      "path": "src/components/list/constants.ts",
+      "gitBlob": "482e84e6ae174817010a64d0b19f0e68cb31be5f",
+      "bytes": 658
+    },
+    {
+      "path": "src/components/list/context/data-list-config-context.ts",
+      "gitBlob": "849c37d02dfc17b9a6d5bd2eb2484a3ca9ccc02c",
+      "bytes": 485
+    },
+    {
+      "path": "src/components/list/context/data-list-context.ts",
+      "gitBlob": "3e3dda948296eb5dedc3b9bafaeae3d855316fe4",
+      "bytes": 189
+    },
+    {
+      "path": "src/components/list/context/data-list-provider.tsx",
+      "gitBlob": "3e4e013c83baeb1868203175952bd8b61d77ca91",
+      "bytes": 1819
+    },
+    {
+      "path": "src/components/list/eslint.config.mjs",
+      "gitBlob": "c24b44c0f352fffbf96352b0ae77fa4ccbd92026",
+      "bytes": 695
+    },
+    {
+      "path": "src/components/list/hooks/use-data-list-model.ts",
+      "gitBlob": "cf05d53c22a9ed1516ebdd10df4921024c55ad3d",
+      "bytes": 1331
+    },
+    {
+      "path": "src/components/list/hooks/use-data-list-store.ts",
+      "gitBlob": "5e16a82714de915b68e946939e607af5a02c2d93",
+      "bytes": 702
+    },
+    {
+      "path": "src/components/list/index.ts",
+      "gitBlob": "24b6c639463dde3a7d49da7cf7a8248765d0be53",
+      "bytes": 1898
+    },
+    {
+      "path": "src/components/list/list.stories.tsx",
+      "gitBlob": "de27fb36a099bf51f4dae3855dda29e33ad655a2",
+      "bytes": 9566
+    },
+    {
+      "path": "src/components/list/public-api.test.tsx",
+      "gitBlob": "cf1627f9ab06f22dfb4dd252a5786106ecb4cc6a",
+      "bytes": 1439
+    },
+    {
+      "path": "src/components/list/store/create-store.test.ts",
+      "gitBlob": "99a424ccc3a0384cb1cfecc8bc6b4c58441a59fe",
+      "bytes": 2397
+    },
+    {
+      "path": "src/components/list/store/create-store.ts",
+      "gitBlob": "df4a01a0eff808d8bdef79e53cfdb55394a5af84",
+      "bytes": 8625
+    },
+    {
+      "path": "src/components/list/store/selectors.ts",
+      "gitBlob": "9e0cabc0bf4fe88a75462fb3cbf59d264c0fc178",
+      "bytes": 1009
+    },
+    {
+      "path": "src/components/list/store/types.ts",
+      "gitBlob": "dee666312baf73eccee01e22545553a3a19b29b5",
+      "bytes": 4031
+    },
+    {
+      "path": "src/components/list/test/fixtures.tsx",
+      "gitBlob": "853ef58ba7aae2f693dc88fa5c56b840665f3efa",
+      "bytes": 1962
+    },
+    {
+      "path": "src/components/list/test/render-data-list.tsx",
+      "gitBlob": "47bf5fe339f770bdea7cef203ca90cc2e0d5131f",
+      "bytes": 1288
+    },
+    {
+      "path": "src/components/list/tsconfig.json",
+      "gitBlob": "ea870cbedd088f9934b11dfaf54048e9685fc330",
+      "bytes": 194
+    },
+    {
+      "path": "src/components/list/types.ts",
+      "gitBlob": "7678f19de643d11cefbc6ac868050d91f653de24",
+      "bytes": 16210
+    },
+    {
+      "path": "src/components/list/utils/model.test.tsx",
+      "gitBlob": "3ff54e9daee92e9cb59d359b5f8294d72e1e5951",
+      "bytes": 3739
+    },
+    {
+      "path": "src/components/list/utils/model.ts",
+      "gitBlob": "2eed9b4127146cd2a59eee659058b50b62d7c2ad",
+      "bytes": 15363
+    },
+    {
+      "path": "src/components/list/utils/reorder.test.ts",
+      "gitBlob": "84afdbf96817c75ea24f0dc2e66118cc8373c66e",
+      "bytes": 1771
+    },
+    {
+      "path": "src/components/list/utils/reorder.ts",
+      "gitBlob": "f904ba52b9114e49e54acca8fd68fe55fcd08c85",
+      "bytes": 2026
+    },
+    {
+      "path": "src/components/list/utils/selection.ts",
+      "gitBlob": "06cc82d2c68785c497efc524479aef72b218e713",
+      "bytes": 1884
+    },
+    {
+      "path": "src/components/timeline/README.md",
+      "gitBlob": "68fbc33120a006b4e94577bd45e642acdc10fc66",
+      "bytes": 11756
+    },
+    {
+      "path": "src/components/timeline/components/timeline-bar.test.tsx",
+      "gitBlob": "f0d5f37861f5550793450db51d9aacafc28c7fc6",
+      "bytes": 3578
+    },
+    {
+      "path": "src/components/timeline/components/timeline-bar.tsx",
+      "gitBlob": "fdb3a8294f2eab12e35fab7c72f02215991b507b",
+      "bytes": 13990
+    },
+    {
+      "path": "src/components/timeline/components/timeline-controls.test.tsx",
+      "gitBlob": "92e9e630e3ab39fea1988ced2418dde2ee19bdc0",
+      "bytes": 3218
+    },
+    {
+      "path": "src/components/timeline/components/timeline-controls.tsx",
+      "gitBlob": "2cad599421a8ddfc0e3da7930dcfc73db65dfd32",
+      "bytes": 2969
+    },
+    {
+      "path": "src/components/timeline/components/timeline-data-state.tsx",
+      "gitBlob": "d035a130890be8cd0c5e4ba9ebfeaf6657701bc9",
+      "bytes": 2584
+    },
+    {
+      "path": "src/components/timeline/components/timeline-dependency-layer.test.tsx",
+      "gitBlob": "30d9a5af750b58c6aa79e82226c4079b217f5fd7",
+      "bytes": 9680
+    },
+    {
+      "path": "src/components/timeline/components/timeline-dependency-layer.tsx",
+      "gitBlob": "be55e7d5346a0b55b36a9c0af838cc8a9c381ebd",
+      "bytes": 17907
+    },
+    {
+      "path": "src/components/timeline/components/timeline-empty-state.test.tsx",
+      "gitBlob": "5a00b578c75c2332172e56f55803ff8460fd8c20",
+      "bytes": 1002
+    },
+    {
+      "path": "src/components/timeline/components/timeline-empty-state.tsx",
+      "gitBlob": "13b4a4175dcd76ca2e1c2901e686a06b8d227557",
+      "bytes": 2696
+    },
+    {
+      "path": "src/components/timeline/components/timeline-ghost-bar.test.tsx",
+      "gitBlob": "2cd1e76dd17b21e147bded52d5caf49a8dfec157",
+      "bytes": 2868
+    },
+    {
+      "path": "src/components/timeline/components/timeline-ghost-bar.tsx",
+      "gitBlob": "835921cc38d54d080ab1c9788da5ac3fcf455883",
+      "bytes": 3113
+    },
+    {
+      "path": "src/components/timeline/components/timeline-grid.test.tsx",
+      "gitBlob": "8d77c176d53afe0ff5ad4ace76d195ddbc8e5453",
+      "bytes": 3254
+    },
+    {
+      "path": "src/components/timeline/components/timeline-grid.tsx",
+      "gitBlob": "1ff8aab44f472137ed33396a68752c8bc8186d40",
+      "bytes": 3456
+    },
+    {
+      "path": "src/components/timeline/components/timeline-header.test.tsx",
+      "gitBlob": "afea800d2bf54ff540ea3b196590cc7618e82734",
+      "bytes": 3985
+    },
+    {
+      "path": "src/components/timeline/components/timeline-header.tsx",
+      "gitBlob": "9ad3a7072c818d7e99806a9e2a407429d87eba4e",
+      "bytes": 7871
+    },
+    {
+      "path": "src/components/timeline/components/timeline-hierarchy-layer.test.tsx",
+      "gitBlob": "05780c02214ca61a42674b7f7b2c0155ec76cf31",
+      "bytes": 4006
+    },
+    {
+      "path": "src/components/timeline/components/timeline-hierarchy-layer.tsx",
+      "gitBlob": "caa5b27f037859e4247aa33e1e6715380606683a",
+      "bytes": 4777
+    },
+    {
+      "path": "src/components/timeline/components/timeline-offscreen-indicator.test.tsx",
+      "gitBlob": "ffb1c6207f47d1fd19331280000e154f4406a254",
+      "bytes": 4412
+    },
+    {
+      "path": "src/components/timeline/components/timeline-offscreen-indicator.tsx",
+      "gitBlob": "9d31b913bc7715c5c06b297bd4a5751827e0bb80",
+      "bytes": 5846
+    },
+    {
+      "path": "src/components/timeline/components/timeline-renderer-boundary.tsx",
+      "gitBlob": "3783795be50c26a33238de80dca2dabed45d106b",
+      "bytes": 1576
+    },
+    {
+      "path": "src/components/timeline/components/timeline-row.tsx",
+      "gitBlob": "4a13dbd7af5997ffb992bc7eeb486f36456c3a70",
+      "bytes": 1187
+    },
+    {
+      "path": "src/components/timeline/components/timeline-search-empty-state.tsx",
+      "gitBlob": "37ee56eb37d3ee08249fee4b1c2bd81571d7752d",
+      "bytes": 1595
+    },
+    {
+      "path": "src/components/timeline/components/timeline-search.tsx",
+      "gitBlob": "e2e4d4e541385f9aa0aec569f74d91ad219e8a77",
+      "bytes": 2578
+    },
+    {
+      "path": "src/components/timeline/components/timeline-settings.tsx",
+      "gitBlob": "b9a1d95931fb7d158446eeee2a5ef439e0c702d7",
+      "bytes": 13129
+    },
+    {
+      "path": "src/components/timeline/components/timeline-sidebar-item.test.tsx",
+      "gitBlob": "b42962de391ae518ee177b19d2e7e55e2d7ee858",
+      "bytes": 3933
+    },
+    {
+      "path": "src/components/timeline/components/timeline-sidebar-item.tsx",
+      "gitBlob": "4bc86e0f464940388e35ef5d2c208919f863df14",
+      "bytes": 5163
+    },
+    {
+      "path": "src/components/timeline/components/timeline-sidebar.test.tsx",
+      "gitBlob": "0128f781d04c2a4425271da48fe784592601b145",
+      "bytes": 2976
+    },
+    {
+      "path": "src/components/timeline/components/timeline-sidebar.tsx",
+      "gitBlob": "f37c30fc66b9dda0c974fa865692ff0f6a4c8dea",
+      "bytes": 5586
+    },
+    {
+      "path": "src/components/timeline/components/timeline-today-header-marker.tsx",
+      "gitBlob": "6521b185ffa9606ac600582950d688d351979d99",
+      "bytes": 2084
+    },
+    {
+      "path": "src/components/timeline/components/timeline-today-marker.test.tsx",
+      "gitBlob": "1bf8163325df9919514c56aeed49bb300a2b44b1",
+      "bytes": 2495
+    },
+    {
+      "path": "src/components/timeline/components/timeline-today-marker.tsx",
+      "gitBlob": "b3a2bf8214e1bfffb915361f352f7cdaabda5830",
+      "bytes": 1692
+    },
+    {
+      "path": "src/components/timeline/components/timeline-viewport-select.tsx",
+      "gitBlob": "5aa3f14dfcd8afb0e11c7d503b5a87b46407716e",
+      "bytes": 2372
+    },
+    {
+      "path": "src/components/timeline/components/timeline.test.tsx",
+      "gitBlob": "22088b89ea6688e836f48e032bca771aaa0a847f",
+      "bytes": 12558
+    },
+    {
+      "path": "src/components/timeline/components/timeline.tsx",
+      "gitBlob": "92e47dd4bf9957ecf087d288b82c5d9f62ed42fa",
+      "bytes": 28513
+    },
+    {
+      "path": "src/components/timeline/constants.ts",
+      "gitBlob": "d662fc76d570624a77d82d38a26b9d1967f4b826",
+      "bytes": 4196
+    },
+    {
+      "path": "src/components/timeline/context/timeline-config-context.ts",
+      "gitBlob": "b82ec5d3ce88de5fe96e6cd88695df503f25275c",
+      "bytes": 1058
+    },
+    {
+      "path": "src/components/timeline/context/timeline-context.ts",
+      "gitBlob": "20c16b23fe6ad821a348bdde13ca27c56f29f136",
+      "bytes": 541
+    },
+    {
+      "path": "src/components/timeline/context/timeline-mutation-context.ts",
+      "gitBlob": "9df45ff74de9b52caa15f1c75616957b3e733516",
+      "bytes": 874
+    },
+    {
+      "path": "src/components/timeline/context/timeline-provider.tsx",
+      "gitBlob": "9d1926b6186a8e812c7912d70536d0b67d2bbbb4",
+      "bytes": 5022
+    },
+    {
+      "path": "src/components/timeline/hooks/use-auto-scroll.test.ts",
+      "gitBlob": "8cd5424b0af137c7113a6fc5706c92293cf3a000",
+      "bytes": 4366
+    },
+    {
+      "path": "src/components/timeline/hooks/use-auto-scroll.ts",
+      "gitBlob": "a5d61d9cd8f2543b664e2bc074dbd577dd2a2b4c",
+      "bytes": 3304
+    },
+    {
+      "path": "src/components/timeline/hooks/use-bar-position.test.ts",
+      "gitBlob": "5ca09856407955f30325f8bd719b8f711c2f2774",
+      "bytes": 822
+    },
+    {
+      "path": "src/components/timeline/hooks/use-bar-position.ts",
+      "gitBlob": "ff30d75017ac2e6cc27dc580e48a2ee0a71cf1a6",
+      "bytes": 1038
+    },
+    {
+      "path": "src/components/timeline/hooks/use-dependency-editor.ts",
+      "gitBlob": "dad0dc369a095842007ffa2687bd6c8c2c501b71",
+      "bytes": 10643
+    },
+    {
+      "path": "src/components/timeline/hooks/use-display-rows.test.ts",
+      "gitBlob": "1a6f94211274e30fd2c207c97e5b7abcdcfd1d42",
+      "bytes": 8051
+    },
+    {
+      "path": "src/components/timeline/hooks/use-display-rows.ts",
+      "gitBlob": "fcce9acfebd9f7547f80b8316d221d40956d5386",
+      "bytes": 5932
+    },
+    {
+      "path": "src/components/timeline/hooks/use-drag.test.ts",
+      "gitBlob": "2c42b014e7122da2e4b9318074e9871b171ef43e",
+      "bytes": 7790
+    },
+    {
+      "path": "src/components/timeline/hooks/use-drag.ts",
+      "gitBlob": "41cac1b3066e5f1638a191d40be11b06dabd852d",
+      "bytes": 10152
+    },
+    {
+      "path": "src/components/timeline/hooks/use-keyboard-shortcuts.test.ts",
+      "gitBlob": "f4bf944c4d2ac8dbe143d0a9d2b3911611b00504",
+      "bytes": 5951
+    },
+    {
+      "path": "src/components/timeline/hooks/use-keyboard-shortcuts.ts",
+      "gitBlob": "02e2472b7bf58439ccb40d51b081823d3d87df22",
+      "bytes": 7576
+    },
+    {
+      "path": "src/components/timeline/hooks/use-multi-select.test.ts",
+      "gitBlob": "d7336f3fb044cce67d2d7b4ae6a24db2346f516c",
+      "bytes": 4118
+    },
+    {
+      "path": "src/components/timeline/hooks/use-multi-select.ts",
+      "gitBlob": "be8c64e11cfc4179ca90c58672b8ba38e8ea2bd0",
+      "bytes": 1612
+    },
+    {
+      "path": "src/components/timeline/hooks/use-offscreen-items.test.ts",
+      "gitBlob": "73ec5b4c630c21677943376942dc38e38f018ba0",
+      "bytes": 4094
+    },
+    {
+      "path": "src/components/timeline/hooks/use-offscreen-items.ts",
+      "gitBlob": "d907f8827155a73d2c48ff47e8ddb6e93eba9d77",
+      "bytes": 3011
+    },
+    {
+      "path": "src/components/timeline/hooks/use-resize.test.ts",
+      "gitBlob": "a83a2d9ff67a9d70d3fa2057828de69bfb2ec771",
+      "bytes": 8687
+    },
+    {
+      "path": "src/components/timeline/hooks/use-resize.ts",
+      "gitBlob": "d80cccdb0cd7fefbda973aeefd86f1f63935bcd9",
+      "bytes": 11259
+    },
+    {
+      "path": "src/components/timeline/hooks/use-shift-scroll.test.ts",
+      "gitBlob": "93bbac626d4c3e9d6f091ea47ed54acc3634ca17",
+      "bytes": 2803
+    },
+    {
+      "path": "src/components/timeline/hooks/use-shift-scroll.ts",
+      "gitBlob": "bed611b4d5e2c43fadad4bf13c0dd5cb9395a58b",
+      "bytes": 1411
+    },
+    {
+      "path": "src/components/timeline/hooks/use-timeline-store.ts",
+      "gitBlob": "3e4951032f547809d2b921907018a3da90a008d8",
+      "bytes": 1088
+    },
+    {
+      "path": "src/components/timeline/hooks/use-viewport-columns.test.ts",
+      "gitBlob": "f86d86f3841f0eb287b5f3be4f3cf0ad27ebb41e",
+      "bytes": 3221
+    },
+    {
+      "path": "src/components/timeline/hooks/use-viewport-columns.ts",
+      "gitBlob": "5021a98d2dac2b17a788abd1e3560b57cdde9a66",
+      "bytes": 6031
+    },
+    {
+      "path": "src/components/timeline/hooks/use-virtual-rows.test.ts",
+      "gitBlob": "072d4646e5e166cd40bfff0d5c6aaf3d42c5850e",
+      "bytes": 1546
+    },
+    {
+      "path": "src/components/timeline/hooks/use-virtual-rows.ts",
+      "gitBlob": "fc5f0e73032d78efd4ba7383f4b065a520fea053",
+      "bytes": 3942
+    },
+    {
+      "path": "src/components/timeline/index.ts",
+      "gitBlob": "270888366025e1f7f4dbe09a89bfc318b15de693",
+      "bytes": 2597
+    },
+    {
+      "path": "src/components/timeline/production-types.ts",
+      "gitBlob": "bcf9b4196f3550c2208fe0da629b56d6a8a2a9c1",
+      "bytes": 5601
+    },
+    {
+      "path": "src/components/timeline/public-api.test.tsx",
+      "gitBlob": "87a93218ede44df470aebda3579f5ee2423f5621",
+      "bytes": 1040
+    },
+    {
+      "path": "src/components/timeline/store/create-store.test.ts",
+      "gitBlob": "ee71f735bb10f3c0e82a445aea3f43b55dce07b0",
+      "bytes": 3120
+    },
+    {
+      "path": "src/components/timeline/store/create-store.ts",
+      "gitBlob": "768b361d7e5c6946966f3884597c78a1e11ffbac",
+      "bytes": 16642
+    },
+    {
+      "path": "src/components/timeline/store/selectors.ts",
+      "gitBlob": "98a4fc1f38791631e9eaf504bfa8c325e95d20c0",
+      "bytes": 2462
+    },
+    {
+      "path": "src/components/timeline/store/slices/interaction-slice.test.ts",
+      "gitBlob": "11016496e01812dfedee3389062f865cb15528bc",
+      "bytes": 3586
+    },
+    {
+      "path": "src/components/timeline/store/slices/interaction-slice.ts",
+      "gitBlob": "1f010fabaa53036d2aa15f7503a98c278aa83b7e",
+      "bytes": 1752
+    },
+    {
+      "path": "src/components/timeline/store/slices/items-slice.test.ts",
+      "gitBlob": "0ce4a75f654b07712181e0cf6bf18d59453d3772",
+      "bytes": 6819
+    },
+    {
+      "path": "src/components/timeline/store/slices/items-slice.ts",
+      "gitBlob": "78dc3dac52f1d441c3d67a0385cbf7013ed2729f",
+      "bytes": 3930
+    },
+    {
+      "path": "src/components/timeline/store/slices/selection-slice.test.ts",
+      "gitBlob": "2218d22131e363754d1ca511f25441bab764df6a",
+      "bytes": 4402
+    },
+    {
+      "path": "src/components/timeline/store/slices/selection-slice.ts",
+      "gitBlob": "620af03b03a3c98768fa1e0916bade75801f3651",
+      "bytes": 2693
+    },
+    {
+      "path": "src/components/timeline/store/slices/ui-slice.test.ts",
+      "gitBlob": "a072f76e7bbd312e4e94e581564d038f733f960e",
+      "bytes": 4561
+    },
+    {
+      "path": "src/components/timeline/store/slices/ui-slice.ts",
+      "gitBlob": "4022c055244f7ea8d9e9b05ddfc7119c6487f9f1",
+      "bytes": 2930
+    },
+    {
+      "path": "src/components/timeline/store/slices/viewport-slice.test.ts",
+      "gitBlob": "67890fbea6a65828240b5f9e22511d1805dc8055",
+      "bytes": 5375
+    },
+    {
+      "path": "src/components/timeline/store/slices/viewport-slice.ts",
+      "gitBlob": "19cbf1a9a9dba775075e4f25c9b48632ad291608",
+      "bytes": 2664
+    },
+    {
+      "path": "src/components/timeline/test/fixtures.ts",
+      "gitBlob": "ab979dc1df2e79dff8478ab4fe210aaf57dce3c8",
+      "bytes": 3009
+    },
+    {
+      "path": "src/components/timeline/test/integration/bulk-drag.test.tsx",
+      "gitBlob": "aa4d5c2f89f47cd60e1bc1eec16383b82b5a8fc7",
+      "bytes": 2688
+    },
+    {
+      "path": "src/components/timeline/test/integration/drag-autoscroll.test.tsx",
+      "gitBlob": "3c56512d4b66f291ab238d8fdac3cbde9e55e63c",
+      "bytes": 2465
+    },
+    {
+      "path": "src/components/timeline/test/integration/production-data.test.tsx",
+      "gitBlob": "331f5aed7caed9b4673042f9178874d75fd5d58c",
+      "bytes": 3228
+    },
+    {
+      "path": "src/components/timeline/test/render-timeline.tsx",
+      "gitBlob": "8cc8c34aa27ad6ea50ed23536f6eaefca680e2d0",
+      "bytes": 3489
+    },
+    {
+      "path": "src/components/timeline/test/setup.ts",
+      "gitBlob": "29277b3c8fd7897c931d8f412a853232de7ec4d2",
+      "bytes": 3134
+    },
+    {
+      "path": "src/components/timeline/timeline.stories.tsx",
+      "gitBlob": "1e58b579b679f897d891b1779d74b5e17d02519f",
+      "bytes": 16379
+    },
+    {
+      "path": "src/components/timeline/types.ts",
+      "gitBlob": "7738737fb68517aa3263318fac67e051239b5f6b",
+      "bytes": 9078
+    },
+    {
+      "path": "src/components/timeline/utils/data-validation.test.ts",
+      "gitBlob": "37d88052d7963329c933d0e300e385c8edece08c",
+      "bytes": 2326
+    },
+    {
+      "path": "src/components/timeline/utils/data-validation.ts",
+      "gitBlob": "d4b01cd5cdc57ba1241ff74a2ac742bbdb7db671",
+      "bytes": 5110
+    },
+    {
+      "path": "src/components/timeline/utils/date-utils.test.ts",
+      "gitBlob": "64527c1b8ee0a3845abbd67300ee979e2d84824f",
+      "bytes": 3339
+    },
+    {
+      "path": "src/components/timeline/utils/date-utils.ts",
+      "gitBlob": "d3359b316e5324c3d4c35ca3c07f5046b4e3e25d",
+      "bytes": 2084
+    },
+    {
+      "path": "src/components/timeline/utils/dependency-path.test.ts",
+      "gitBlob": "6cbe4f22e460119450e1163fb295433784a2892c",
+      "bytes": 3798
+    },
+    {
+      "path": "src/components/timeline/utils/dependency-path.ts",
+      "gitBlob": "e109d7b360a5dbd42d6e8b59b9e2f8d1be731b5c",
+      "bytes": 9423
+    },
+    {
+      "path": "src/components/timeline/utils/link-preview.ts",
+      "gitBlob": "d00ce106e70ebd0b75a8a3e356f0b6f9202f24c1",
+      "bytes": 2179
+    },
+    {
+      "path": "src/components/timeline/utils/mutation-coordinator.test.ts",
+      "gitBlob": "3a4e097cc8dc7d9e55e65ac61b8dc87f8f89ba2c",
+      "bytes": 4486
+    },
+    {
+      "path": "src/components/timeline/utils/mutation-coordinator.ts",
+      "gitBlob": "85b7c85d5189af636dbacf6c421024bbc27d17d4",
+      "bytes": 11226
+    },
+    {
+      "path": "src/components/timeline/utils/position-utils.test.ts",
+      "gitBlob": "d51b0c32893057b2beb43d24baa28d6ecd333450",
+      "bytes": 2877
+    },
+    {
+      "path": "src/components/timeline/utils/position-utils.ts",
+      "gitBlob": "3afef650d6f2f23255f305730666b17b8091bf96",
+      "bytes": 2135
+    },
+    {
+      "path": "src/components/timeline/utils/search-utils.ts",
+      "gitBlob": "8f1e41533d3c4140254a18f4e19f9a4c02c25945",
+      "bytes": 1747
+    },
+    {
+      "path": "src/components/timeline/utils/snap-utils.test.ts",
+      "gitBlob": "d30f18f45f0a20dbcdcdad455b5f2b1377782b63",
+      "bytes": 4234
+    },
+    {
+      "path": "src/components/timeline/utils/snap-utils.ts",
+      "gitBlob": "664a09ba8dedb4a6e66462b6d8444bba91c4101e",
+      "bytes": 1904
+    },
+    {
+      "path": "src/components/timeline/utils/timeline-range.ts",
+      "gitBlob": "819b2dff58be5424b687fb32fba417d8320135f4",
+      "bytes": 2487
+    },
+    {
+      "path": "src/components/timeline/utils/viewport-config.test.ts",
+      "gitBlob": "5182aad07a4b22ed8a6d727927ccd01be9145db6",
+      "bytes": 4082
+    },
+    {
+      "path": "src/components/timeline/utils/viewport-config.ts",
+      "gitBlob": "66fc368a016fb7be8d18f6f12047e11778c63da3",
+      "bytes": 3660
+    },
+    {
+      "path": "src/components/ui/badge.tsx",
+      "gitBlob": "d0addd879c69e8053f78ce5c49699e3f30496c16",
+      "bytes": 1965
+    },
+    {
+      "path": "src/components/ui/button.tsx",
+      "gitBlob": "21801694a3642b7afdde7353408d1df560bf0a3c",
+      "bytes": 3123
+    },
+    {
+      "path": "src/components/ui/checkbox.tsx",
+      "gitBlob": "4326da668dcc852abd2f6f54df1f0cfd8ae64c3f",
+      "bytes": 1343
+    },
+    {
+      "path": "src/components/ui/input.tsx",
+      "gitBlob": "53fb2bd2345cb6ebbc07fa25bc4ce559227eb59c",
+      "bytes": 1004
+    },
+    {
+      "path": "src/components/ui/label.tsx",
+      "gitBlob": "28cc2be8af8f6bbf6c336d1f5cad206229fb7226",
+      "bytes": 526
+    },
+    {
+      "path": "src/components/ui/popover.tsx",
+      "gitBlob": "3edcf19c97a6da179c43a90e02ed4897c56658ac",
+      "bytes": 2564
+    },
+    {
+      "path": "src/components/ui/select.tsx",
+      "gitBlob": "c081bb86a5e6284a30d99cfc2def592473dab547",
+      "bytes": 6614
+    },
+    {
+      "path": "src/components/ui/separator.tsx",
+      "gitBlob": "6e1369e43cce8be3da7ef04940b79dd276245290",
+      "bytes": 545
+    },
+    {
+      "path": "src/components/ui/sheet.tsx",
+      "gitBlob": "eff23ebb289d1e4e339822bed807567fed6f0032",
+      "bytes": 4492
+    },
+    {
+      "path": "src/components/ui/skeleton.tsx",
+      "gitBlob": "0118624f6e6a64b90c24502a4e2b8c5513098072",
+      "bytes": 275
+    },
+    {
+      "path": "src/components/ui/switch.tsx",
+      "gitBlob": "f50a7a7f38c55586c3b4fc576d761e76300225f9",
+      "bytes": 1695
+    },
+    {
+      "path": "src/components/ui/tooltip.tsx",
+      "gitBlob": "69e8a822c0e10629683093292a1b3b5de14ccb08",
+      "bytes": 2846
+    },
+    {
+      "path": "src/hooks/use-shift-wheel.ts",
+      "gitBlob": "df41cfda7455c1301d9817bc57dcf8e4077d8c5b",
+      "bytes": 1045
+    },
+    {
+      "path": "src/lib/utils.ts",
+      "gitBlob": "bd0c391ddd1088e9067844c48835bf4abcd61783",
+      "bytes": 166
+    }
+  ]
+}

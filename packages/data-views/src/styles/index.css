@@ -1,0 +1,90 @@
+@import "tailwindcss" source("../");
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *, [data-edv-theme="dark"] *));
+
+@theme inline {
+  --color-background: var(--edv-background);
+  --color-foreground: var(--edv-foreground);
+  --color-card: var(--edv-card);
+  --color-card-foreground: var(--edv-card-foreground);
+  --color-popover: var(--edv-popover);
+  --color-popover-foreground: var(--edv-popover-foreground);
+  --color-primary: var(--edv-primary);
+  --color-primary-foreground: var(--edv-primary-foreground);
+  --color-secondary: var(--edv-secondary);
+  --color-secondary-foreground: var(--edv-secondary-foreground);
+  --color-muted: var(--edv-muted);
+  --color-muted-foreground: var(--edv-muted-foreground);
+  --color-accent: var(--edv-accent);
+  --color-accent-foreground: var(--edv-accent-foreground);
+  --color-destructive: var(--edv-destructive);
+  --color-border: var(--edv-border);
+  --color-input: var(--edv-input);
+  --color-ring: var(--edv-ring);
+  --color-success: var(--edv-success);
+  --color-warning: var(--edv-warning);
+  --color-info: var(--edv-info);
+  --radius-sm: calc(var(--edv-radius) * 0.6);
+  --radius-md: calc(var(--edv-radius) * 0.8);
+  --radius-lg: var(--edv-radius);
+  --radius-xl: calc(var(--edv-radius) * 1.4);
+  --font-sans: var(--edv-font-sans);
+  --font-heading: var(--edv-font-heading);
+}
+
+.edv-root,
+[data-edv-root] {
+  --edv-background: var(--background, oklch(1 0 0));
+  --edv-foreground: var(--foreground, oklch(0.21 0.03 264));
+  --edv-card: var(--card, var(--edv-background));
+  --edv-card-foreground: var(--card-foreground, var(--edv-foreground));
+  --edv-popover: var(--popover, var(--edv-background));
+  --edv-popover-foreground: var(--popover-foreground, var(--edv-foreground));
+  --edv-primary: var(--primary, oklch(0.47 0.14 48));
+  --edv-primary-foreground: var(--primary-foreground, oklch(1 0 0));
+  --edv-secondary: var(--secondary, oklch(0.54 0.04 196));
+  --edv-secondary-foreground: var(--secondary-foreground, oklch(1 0 0));
+  --edv-muted: var(--muted, oklch(0.97 0.003 264));
+  --edv-muted-foreground: var(--muted-foreground, oklch(0.48 0.02 264));
+  --edv-accent: var(--accent, oklch(0.95 0 0));
+  --edv-accent-foreground: var(--accent-foreground, var(--edv-foreground));
+  --edv-destructive: var(--destructive, oklch(0.5 0.19 25));
+  --edv-border: var(--border, oklch(0.93 0.006 264));
+  --edv-input: var(--input, var(--edv-border));
+  --edv-ring: var(--ring, var(--edv-primary));
+  --edv-success: var(--success, oklch(0.7 0.16 155));
+  --edv-warning: var(--warning, oklch(0.78 0.16 75));
+  --edv-info: var(--info, oklch(0.65 0.18 285));
+  --edv-radius: var(--radius, 0.625rem);
+  --edv-font-sans: var(--font-sans, ui-sans-serif, system-ui, sans-serif);
+  --edv-font-heading: var(--font-heading, var(--edv-font-sans));
+  color: var(--edv-foreground);
+  font-family: var(--edv-font-sans);
+}
+
+[data-edv-theme="dark"] {
+  --edv-background: oklch(0.18 0.004 308);
+  --edv-foreground: oklch(0.86 0 0);
+  --edv-card: oklch(0.2 0 0);
+  --edv-card-foreground: var(--edv-foreground);
+  --edv-popover: oklch(0.18 0.004 308);
+  --edv-popover-foreground: var(--edv-foreground);
+  --edv-muted: oklch(0.25 0 0);
+  --edv-muted-foreground: oklch(0.68 0 0);
+  --edv-accent: oklch(0.32 0 0);
+  --edv-accent-foreground: var(--edv-foreground);
+  --edv-border: oklch(0.3 0 0);
+  --edv-input: var(--edv-border);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-edv-root] *,
+  [data-edv-root] *::before,
+  [data-edv-root] *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
