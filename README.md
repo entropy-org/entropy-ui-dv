@@ -12,7 +12,7 @@ and optimistic presentation. Applications own records, fetching, persistence,
 permissions, domain forms, and conflict resolution.
 
 The extraction and application migration are complete, and the
-`0.1.0-next.1` release candidate is public on npm. Stable promotion remains a
+`0.1.0-next.2` release candidate is public on npm. Stable promotion remains a
 release-owner action; see `docs/RELEASE.md`.
 
 ## Workspace commands
@@ -33,6 +33,10 @@ import { DataList, DataListProvider } from "@entropy-ui/data-views/list"
 import { Timeline, TimelineProvider } from "@entropy-ui/data-views/timeline"
 import "@entropy-ui/data-views/styles.css"
 ```
+
+The compiled stylesheet is isolated to data-view roots. Tailwind v4 consumers
+can instead scan the package from their application stylesheet and use their
+existing shadcn theme directly; see [`docs/THEMING.md`](./docs/THEMING.md).
 
 Architecture, ownership, persistence, forms, theming, SSR, migration, release
 process, verification, and API policy are documented under [`docs`](./docs).

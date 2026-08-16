@@ -1,6 +1,6 @@
 # Release-candidate verification matrix
 
-Verified on 2026-08-16 for `@entropy-ui/data-views@0.1.0-next.1`.
+Verified on 2026-08-16 for `@entropy-ui/data-views@0.1.0-next.2`.
 
 | Gate | Result |
 | --- | --- |

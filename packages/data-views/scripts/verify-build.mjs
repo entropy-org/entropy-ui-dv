@@ -1,6 +1,7 @@
-import { existsSync, readdirSync, statSync } from "node:fs"
+import { existsSync, readFileSync, readdirSync, statSync } from "node:fs"
 import { resolve } from "node:path"
 import { pathToFileURL } from "node:url"
+import { gzipSync } from "node:zlib"
 import packageJson from "../package.json" with { type: "json" }
 
 const failures = []
@@ -21,10 +22,14 @@ function visit(directory) {
 visit(resolve("dist"))
 
 const cssBytes = statSync(resolve("dist/styles.css")).size
-if (cssBytes > 130_000) failures.push(`Compiled CSS is ${cssBytes} bytes (budget 130000).`)
+const cssGzipBytes = gzipSync(readFileSync(resolve("dist/styles.css"))).length
+if (cssBytes > 225_000) failures.push(`Compiled CSS is ${cssBytes} bytes (budget 225000).`)
+if (cssGzipBytes > 25_000) failures.push(`Compiled CSS gzip is ${cssGzipBytes} bytes (budget 25000).`)
 
 await import(pathToFileURL(resolve("dist/server.js")))
 await import(pathToFileURL(resolve("dist/index.js")))
 
 if (failures.length > 0) throw new Error(failures.join("\n"))
-process.stdout.write(`Verified ${Object.keys(packageJson.exports).length} exports and ${cssBytes} bytes of compiled CSS.\n`)
+process.stdout.write(
+  `Verified ${Object.keys(packageJson.exports).length} exports and ${cssBytes} bytes (${cssGzipBytes} gzip) of compiled CSS.\n`,
+)

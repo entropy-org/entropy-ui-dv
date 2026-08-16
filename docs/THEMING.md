@@ -1,8 +1,21 @@
 # Styling and theming
 
-Import `@entropy-ui/data-views/styles.css` once. The stylesheet contains the
-compiled component utilities and scoped semantic variables. It does not
-require Tailwind in the consuming application.
+For a zero-config or non-Tailwind application, import
+`@entropy-ui/data-views/styles.css` once. The compiled reset, theme variables,
+and utility selectors are all namespaced to data-view roots, so the stylesheet
+cannot restyle host buttons, dialogs, typography, or shadcn primitives.
+
+Tailwind v4 applications that want the views to use their exact host utility
+output can omit the compiled stylesheet and register the package as a source:
+
+```css
+@import "tailwindcss";
+@source "../node_modules/@entropy-ui/data-views/dist";
+```
+
+This host-native mode is what the Entropy UI application uses. It preserves
+the application's shadcn tokens, base styles, font, animation utilities, and
+class-name overrides without maintaining a second theme.
 
 Every root carries `.edv-root`, `data-edv-root`, and a documented
 `data-edv-part`. `DataViewThemeProvider` scopes light/dark mode and token

@@ -81,3 +81,8 @@ forms, validation, and conflict resolution.
 
 See the repository documentation for architecture, forms, theming, SSR,
 public API policy, and saved-view migrations.
+
+`styles.css` is fully scoped to `.edv-root`/`[data-edv-root]` and does not
+install a document-wide Tailwind reset. Tailwind v4 hosts may omit it and add
+`@source "../node_modules/@entropy-ui/data-views/dist"` to their own stylesheet
+to use the host's exact shadcn tokens, utilities, font, and animations.

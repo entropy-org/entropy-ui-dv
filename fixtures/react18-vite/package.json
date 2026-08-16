@@ -7,7 +7,7 @@
     "build": "tsc -b && vite build"
   },
   "dependencies": {
-    "@entropy-ui/data-views": "file:../../artifacts/entropy-ui-data-views-0.1.0-next.1.tgz",
+    "@entropy-ui/data-views": "file:../../artifacts/entropy-ui-data-views-0.1.0-next.2.tgz",
     "react": "18.3.1",
     "react-dom": "18.3.1"
   },
