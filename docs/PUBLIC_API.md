@@ -8,8 +8,7 @@ compatible API.
 
 The root and `/core` expose the controlled multi-view layer:
 
-- `DatabaseViews`, `DatabaseViewsHeader`, `DatabaseViewTabs`,
-  `DatabaseViewsToolbar`, and `DatabaseViewSurface`
+- `DatabaseViews` and the library-rendered `DatabaseViewTabs`
 - `DataViewThemeProvider`
 - `DataViewFormSurface`, `DataViewPropertyEditor`, and
   `DataViewRecordFormFields`
@@ -21,13 +20,13 @@ The root and `/core` expose the controlled multi-view layer:
 
 ## Engine paths
 
-- `/list`: `DataList`, `DataListSurface`, `DataListControls`, provider, config,
-  commands, selection, grouping, hierarchy, and status types.
+- `/list`: `DataList`, `DataListSurface`, provider, config, commands,
+  selection, grouping, hierarchy, and status types.
 - `/kanban`: `Kanban`, `KanbanSurface`, `KanbanControls`, provider, commands,
   optimistic ledger, preferences, data state, and model types.
-- `/calendar`: `Calendar`, `CalendarSurface`, controls, provider, public date
+- `/calendar`: `Calendar`, `CalendarSurface`, navigation controls, provider, public date
   and range types, preferences, commands, date helpers, and data-state helpers.
-- `/timeline`: `Timeline`, `TimelineSurface`, controls, provider, settings,
+- `/timeline`: `Timeline`, `TimelineSurface`, navigation controls, provider,
   item/dependency/preferences/mutation types, and validation helpers.
 - `/adapters`: `createBuiltInDataViewPlugins` and its generic record/property
   rendering options. Keeping this separate means importing the shell does not
@@ -37,6 +36,11 @@ The initially extracted low-level Calendar and Timeline hooks remain available
 during the prerelease migration window. They are compatibility exports, not the
 preferred composition API. They will not be removed before a documented major
 release.
+
+`DatabaseViews` is the supported owner for tabs, global search, settings, and
+record creation. Engine-level settings/search components are intentionally not
+public API. Calendar and Timeline navigation headers are required; List and
+Kanban intentionally have no idle header.
 
 ## CSS
 

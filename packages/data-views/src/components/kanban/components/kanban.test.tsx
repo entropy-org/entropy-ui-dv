@@ -33,10 +33,10 @@ describe("Kanban", () => {
     expect(screen.getAllByText("No cards")).toHaveLength(1)
   })
 
-  it("can hide its built-in header without hiding cards", () => {
+  it("does not render idle global chrome", () => {
     render(
       <KanbanProvider config={createTestKanbanConfig()}>
-        <Kanban showHeader={false} />
+        <Kanban />
       </KanbanProvider>
     )
 
@@ -110,7 +110,6 @@ describe("Kanban", () => {
       expect.objectContaining({ id: "one" })
     )
     expect(screen.queryByText(/selected$/)).not.toBeInTheDocument()
-    expect(screen.getByText("3 cards")).toBeInTheDocument()
     expect(first).toHaveClass("cursor-pointer", "select-none")
     expect(first).not.toHaveAttribute("data-selected")
   })
@@ -173,26 +172,6 @@ describe("Kanban", () => {
       expect.objectContaining({ collapsedGroupIds: ["todo"] }),
       expect.objectContaining({ type: "group-collapsed" })
     )
-  })
-
-  it("searches normalized consumer text and navigates results", () => {
-    renderBoard()
-    const input = screen.getByRole("textbox", { name: "Search Kanban cards" })
-    fireEvent.change(input, { target: { value: "third" } })
-    expect(
-      screen.getByRole("group", { name: "Third task" })
-    ).toBeInTheDocument()
-    expect(
-      screen.queryByRole("group", { name: "First task" })
-    ).not.toBeInTheDocument()
-    fireEvent.change(input, { target: { value: "missing" } })
-    expect(screen.getByText("No matching cards")).toBeInTheDocument()
-    fireEvent.click(
-      screen.getAllByRole("button", { name: "Clear search" }).at(-1)!
-    )
-    expect(
-      screen.getByRole("group", { name: "First task" })
-    ).toBeInTheDocument()
   })
 
   it("renders controlled swimlanes and collapse preferences", () => {
@@ -273,20 +252,6 @@ describe("Kanban", () => {
     unmount()
     renderBoard({ cards: [], groups: [] })
     expect(screen.getByText("No cards yet")).toBeInTheDocument()
-  })
-
-  it("hands search to the server without hiding the currently loaded page", () => {
-    const onQueryChange = vi.fn()
-    renderBoard({ search: { mode: "server", onQueryChange, resultCount: 12 } })
-    fireEvent.change(
-      screen.getByRole("textbox", { name: "Search Kanban cards" }),
-      { target: { value: "not loaded locally" } }
-    )
-    expect(onQueryChange).toHaveBeenCalledWith("not loaded locally")
-    expect(
-      screen.getByRole("group", { name: "First task" })
-    ).toBeInTheDocument()
-    expect(screen.getByText("12")).toBeInTheDocument()
   })
 
   it("loads another intersection page with an idempotency key", async () => {

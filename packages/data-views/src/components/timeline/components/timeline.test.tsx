@@ -240,11 +240,10 @@ describe("Timeline (Root)", () => {
     }
   })
 
-  it("filters rows from the search bar and clears the result", async () => {
-    const user = userEvent.setup()
+  it("filters rows from a wrapper-provided query and clears the result", () => {
     const items = createTestItems(3, new Date("2026-07-14"))
 
-    renderTimeline(<Timeline />, {
+    const { store } = renderTimeline(<Timeline />, {
       items,
       sidebar: true,
       viewportMode: "day",
@@ -252,35 +251,21 @@ describe("Timeline (Root)", () => {
       viewportHeight: 400,
     })
 
-    const input = screen.getByRole("searchbox", {
-      name: "Search timeline",
-    })
-    const searchControl = screen.getByTestId("timeline-search")
-
-    expect(input).toHaveAttribute("placeholder", "Search…")
-    expect(input).toHaveClass("focus-visible:ring-0")
-    expect(searchControl).toHaveClass("w-44")
-
-    await user.click(input)
-    expect(searchControl).toHaveClass("w-44")
-    await user.type(input, "Task 2")
+    act(() => store.getState().actions.setSearchQuery("Task 2"))
 
     expect(screen.queryByTestId("timeline-bar-item-1")).not.toBeInTheDocument()
     expect(screen.getByTestId("timeline-bar-item-2")).toBeInTheDocument()
     expect(screen.queryByTestId("timeline-bar-item-3")).not.toBeInTheDocument()
     expect(screen.getByTestId("sidebar-item-item-2")).toBeInTheDocument()
 
-    await user.click(
-      screen.getByRole("button", { name: "Clear timeline search" })
-    )
+    act(() => store.getState().actions.setSearchQuery(""))
 
-    expect(input).toHaveValue("")
+    expect(store.getState().searchQuery).toBe("")
     expect(screen.getByTestId("timeline-bar-item-1")).toBeInTheDocument()
     expect(screen.getByTestId("timeline-bar-item-3")).toBeInTheDocument()
   })
 
   it("scrolls to the first match in real time when results share a prefix", async () => {
-    const user = userEvent.setup()
     const items = [
       {
         id: "alpha-first",
@@ -313,10 +298,7 @@ describe("Timeline (Root)", () => {
       firstPosition.left + firstPosition.width / 2 - 160
     )
 
-    await user.type(
-      screen.getByRole("searchbox", { name: "Search timeline" }),
-      "Alpha"
-    )
+    act(() => store.getState().actions.setSearchQuery("Alpha"))
 
     await waitFor(() => {
       expect(store.getState().scrollLeft).toBe(expectedScrollLeft)
@@ -327,17 +309,14 @@ describe("Timeline (Root)", () => {
     const user = userEvent.setup()
     const items = createTestItems(2, new Date("2026-07-14"))
 
-    renderTimeline(<Timeline />, {
+    const { store } = renderTimeline(<Timeline />, {
       items,
       viewportMode: "day",
       viewportWidth: 5000,
       viewportHeight: 400,
     })
 
-    await user.type(
-      screen.getByRole("searchbox", { name: "Search timeline" }),
-      "not-a-row"
-    )
+    act(() => store.getState().actions.setSearchQuery("not-a-row"))
 
     expect(screen.getByTestId("timeline-search-empty-state")).toHaveTextContent(
       "No matching rows"

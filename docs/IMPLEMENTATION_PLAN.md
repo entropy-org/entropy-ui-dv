@@ -12,6 +12,14 @@ Completion evidence and final commands are recorded in
 status is authoritative; the detailed checklists below preserve the original
 acceptance design and are not used as a second release ledger.
 
+> Composition standardization (2026-08-16): the earlier standalone/embedded
+> chrome design below is historical. The implemented contract now has one
+> library-owned `DatabaseViews` row for tabs, search, dynamic settings, and New.
+> Calendar and Timeline always render their engine navigation header; List and
+> Kanban have no idle header. `chrome` and `showHeader` were removed, and the
+> consumer no longer recreates those controls. This decision supersedes every
+> older checklist item that proposes hiding or relocating engine chrome.
+
 ## 1. Purpose
 
 Extract the existing calendar, timeline, kanban, and list engines from

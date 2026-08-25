@@ -31,10 +31,10 @@ describe("Calendar", () => {
     expect(screen.getByLabelText("Mon, 2026-07-27")).toHaveTextContent("27")
   })
 
-  it("can hide its built-in header without hiding the date grid", () => {
-    renderCalendar(<Calendar showHeader={false} />)
+  it("always renders its required date-navigation header", () => {
+    renderCalendar(<Calendar />)
 
-    expect(screen.queryByTestId("calendar-controls")).not.toBeInTheDocument()
+    expect(screen.getByTestId("calendar-controls")).toBeInTheDocument()
     expect(screen.getByTestId("calendar-month-view")).toBeInTheDocument()
   })
 

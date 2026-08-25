@@ -241,7 +241,7 @@ describe("calendar accessibility and resilience", () => {
     expect(root).toHaveClass("min-w-0", "overflow-x-auto")
     expect(
       root.firstElementChild?.nextElementSibling?.nextElementSibling
-    ).toHaveClass("min-w-[960px]")
+    ).toHaveClass("min-w-[720px]")
   })
 })
 

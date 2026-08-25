@@ -32,14 +32,8 @@ import { TooltipProvider } from "../../ui/tooltip.js"
 import { cn } from "../../../lib/utils.js"
 import { useShiftWheel } from "../../../hooks/use-shift-wheel.js"
 import { resolveCalendarDataPresentation } from "../utils/data-integration.js"
-import type { DataViewChrome } from "../../../shared/chrome.js"
-import { resolveDataViewHeader } from "../../../shared/chrome.js"
 
-export type CalendarProps = React.ComponentProps<"div"> & {
-  readonly chrome?: DataViewChrome
-  /** @deprecated Use `chrome={{ mode: "embedded" }}`. */
-  readonly showHeader?: boolean
-}
+export type CalendarProps = React.ComponentProps<"div">
 
 export const Calendar = React.memo(
   React.forwardRef<HTMLDivElement, CalendarProps>(function Calendar(
@@ -51,14 +45,11 @@ export const Calendar = React.memo(
       role = "region",
       "aria-label": ariaLabel = "Calendar",
       "aria-describedby": ariaDescribedBy,
-      showHeader = true,
-      chrome,
       ...props
     },
     forwardedRef
   ) {
     const config = useCalendarConfig()
-    const shouldShowHeader = resolveDataViewHeader(chrome, showHeader)
     const { onVisibleRangeChange } = config
     const model = useCalendarModel()
     const dataPresentation = resolveCalendarDataPresentation(
@@ -229,7 +220,6 @@ export const Calendar = React.memo(
           data-testid="calendar"
           data-edv-root=""
           data-edv-part="calendar"
-          data-edv-chrome={chrome?.mode ?? "standalone"}
           aria-busy={dataPresentation.busy}
           onKeyDown={(event) => {
             onKeyDown?.(event)
@@ -257,7 +247,7 @@ export const Calendar = React.memo(
           <span className="sr-only" aria-live="polite" aria-atomic="true">
             <span key={announcementSequence}>{announcement}</span>
           </span>
-          <div className="flex h-full min-h-[520px] min-w-[960px]">
+          <div className="flex h-full min-h-[520px] min-w-[720px]">
             <CalendarRenderErrorBoundary
               resetKey={`${config.preferences.viewMode}:${model.grid.startDate}:${model.grid.endDate}`}
               renderFallback={config.renderErrorState}
@@ -269,14 +259,12 @@ export const Calendar = React.memo(
                 <CalendarAgendaSidebar config={config.agenda.sidebar} />
               ) : null}
               <div className="flex min-w-0 flex-1 flex-col">
-                {shouldShowHeader ? (
-                  <CalendarControls
-                    itemCount={
-                      dataPresentation.blocksContent ? 0 : model.items.length
-                    }
-                    title={model.title}
-                  />
-                ) : null}
+                <CalendarControls
+                  itemCount={
+                    dataPresentation.blocksContent ? 0 : model.items.length
+                  }
+                  title={model.title}
+                />
                 {config.renderDataState &&
                 (dataPresentation.status !== "ready" ||
                   dataPresentation.partial) ? (

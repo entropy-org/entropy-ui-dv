@@ -4,7 +4,6 @@ export { DataList } from "./components/data-list.js"
 export type { DataListProps } from "./components/data-list.js"
 export { DataListSurface } from "./components/data-list-surface.js"
 export type { DataListSurfaceProps } from "./components/data-list-surface.js"
-export { DataListControls } from "./components/data-list-controls.js"
 export { DataListProvider } from "./context/data-list-provider.js"
 export type { DataListProviderProps } from "./context/data-list-provider.js"
 export { useDataListConfig } from "./context/data-list-config-context.js"
@@ -43,7 +42,6 @@ export type {
   DataListPreferences,
   DataListProperty,
   DataListPropertyCapabilities,
-  DataListRenderControlsContext,
   DataListReorderCommand,
   DataListResolvedGroup,
   DataListRestoreCommand,

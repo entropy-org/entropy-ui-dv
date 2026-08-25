@@ -105,8 +105,7 @@ describe("calendar composed controls", () => {
     )
   })
 
-  it("emits controlled view and settings changes without storing preferences", async () => {
-    const user = userEvent.setup()
+  it("keeps navigation in the engine header and settings out of it", () => {
     const onPreferencesChange = vi.fn()
     const { store } = renderCalendar(<Calendar />, undefined, {
       onPreferencesChange,
@@ -117,14 +116,10 @@ describe("calendar composed controls", () => {
       { type: "view-mode", value: "week" }
     )
 
-    await user.click(screen.getByTestId("calendar-settings-trigger"))
-    const panel = await screen.findByTestId("calendar-settings-panel")
-    expect(panel).toBeInTheDocument()
-    await user.click(screen.getByLabelText("Show weekends"))
-    expect(onPreferencesChange).toHaveBeenCalledWith(
-      expect.objectContaining({ showWeekends: false }),
-      { type: "weekends", value: false }
-    )
+    expect(screen.getByTestId("calendar-controls")).toBeVisible()
+    expect(
+      screen.queryByTestId("calendar-settings-trigger")
+    ).not.toBeInTheDocument()
     expect(store.getState()).not.toHaveProperty("preferences")
   })
 })

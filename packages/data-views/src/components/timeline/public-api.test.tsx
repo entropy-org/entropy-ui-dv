@@ -28,7 +28,7 @@ describe("timeline public API", () => {
 
     const element = (
       <TimelineProvider config={config}>
-        <Timeline showHeader={false} aria-label="Launch timeline" />
+        <Timeline aria-label="Launch timeline" />
       </TimelineProvider>
     )
 

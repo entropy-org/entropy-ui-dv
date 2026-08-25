@@ -143,7 +143,7 @@ const initialViews: readonly SavedDataView[] = [
 type DatabaseViewsStoryProps = {
   readonly initialActiveViewId?: "all" | "board" | "calendar" | "timeline"
   readonly sourceMode?: "client" | "server"
-  readonly embedded?: boolean
+  readonly withSectionHeading?: boolean
   readonly readOnly?: boolean
 }
 
@@ -165,7 +165,7 @@ function describeCreateRequest(request: DataViewCreateRequest) {
 function DatabaseViewsStory({
   initialActiveViewId = "all",
   sourceMode = "client",
-  embedded = false,
+  withSectionHeading = false,
   readOnly = false,
 }: DatabaseViewsStoryProps) {
   const [views, setViews] = useState(initialViews)
@@ -195,8 +195,12 @@ function DatabaseViewsStory({
         }
 
   const viewSurface = (
-    <DatabaseViews
-      className={embedded ? "min-h-[42rem]" : "h-[46rem]"}
+    <>
+      <span className="sr-only" role="status">
+        {lastHostEvent}
+      </span>
+      <DatabaseViews
+      className={withSectionHeading ? "min-h-[42rem]" : "h-[46rem]"}
       source={source}
       schema={schema}
       views={views}
@@ -205,19 +209,11 @@ function DatabaseViewsStory({
       onViewsChange={(nextViews) => setViews(nextViews)}
       plugins={plugins}
       title="Product work"
-      description={`${sourceMode === "server" ? "Server-backed" : "Local"} records`}
-      chrome={embedded ? { mode: "embedded" } : { mode: "standalone" }}
       readOnly={readOnly}
-      headerActions={
-        <span className="max-w-64 truncate text-xs text-muted-foreground" role="status">
-          Host: {lastHostEvent}
-        </span>
-      }
       onIntent={(intent) => setLastHostEvent(describeIntent(intent))}
       onCreateViewRequest={(request) =>
         setLastHostEvent(describeCreateRequest(request))
       }
-      onConfigureView={(view) => setLastHostEvent(`configure ${view.name}`)}
       onDuplicateView={(view) => {
         const copy = {
           ...view,
@@ -232,10 +228,11 @@ function DatabaseViewsStory({
         setActiveViewId("all")
         setLastHostEvent(`delete ${view.name}`)
       }}
-    />
+      />
+    </>
   )
 
-  return embedded ? (
+  return withSectionHeading ? (
     <section className="min-h-screen bg-muted p-6">
       <header className="mx-auto mb-4 flex max-w-7xl items-end justify-between gap-4">
         <div>
@@ -303,13 +300,13 @@ export const ServerBacked: Story = {
   },
 }
 
-export const EmbeddedChrome: Story = {
-  args: { embedded: true },
+export const SectionComposition: Story = {
+  args: { withSectionHeading: true },
   parameters: {
     docs: {
       description: {
         story:
-          "Embedded mode removes the database title header when an application page already owns that level of chrome, while retaining view tabs and actions.",
+          "Page and section headings belong to the application. DatabaseViews always owns saved-view tabs, global search, settings, and record creation.",
       },
     },
   },

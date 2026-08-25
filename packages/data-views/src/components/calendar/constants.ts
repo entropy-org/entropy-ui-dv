@@ -23,7 +23,7 @@ export const DEFAULT_AGENDA_TIMED_DURATION_MINUTES = 30
 /** Controlled-filter sentinel used to distinguish "none" from empty = "all". */
 export const CALENDAR_NO_VISIBLE_SOURCES = "__calendar_no_visible_sources__"
 export const MAX_CALENDAR_HISTORY_ENTRIES = 50
-export const MIN_CALENDAR_DESKTOP_WIDTH_PX = 960
+export const MIN_CALENDAR_DESKTOP_WIDTH_PX = 720
 /** Hard safety cap for the opt-in expanded layout. */
 export const MAX_EXPANDED_CALENDAR_LANES = 50
 

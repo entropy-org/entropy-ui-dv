@@ -441,7 +441,11 @@ function BuiltInKanbanView<TRecord>({
       swimlanes: swimlaneProperty ? swimlanes : undefined,
       readOnly: context.readOnly,
       selection: { mode: "multiple" },
-      preferences: { density: definition.cardSize },
+      preferences: {
+        density: definition.cardSize,
+        columnWidth: definition.columnWidth,
+        showWipLimits: definition.showWipLimits,
+      },
       dataState: toKanbanDataState(context),
       getCardLabel: (card) =>
         context.schema.adapter.getLabel(card.data as TRecord),
@@ -488,6 +492,19 @@ function BuiltInKanbanView<TRecord>({
           },
         }),
       onCommand: context.readOnly ? undefined : handleCommand,
+      onPreferencesChange: (preferences) =>
+        context.updateView(
+          {
+            ...context.view,
+            definition: {
+              ...definition,
+              cardSize: preferences.density,
+              columnWidth: preferences.columnWidth,
+              showWipLimits: preferences.showWipLimits,
+            },
+          },
+          { type: "configuration", viewId: context.view.id }
+        ),
       onRetryData: context.source.mode === "server" ? context.source.onRetry : undefined,
       onLoadMore:
         context.source.mode === "server" && context.source.onLoadMore
@@ -926,8 +943,19 @@ function BuiltInTimelineView<TRecord>({
       items,
       viewportMode: definition.zoom,
       readOnly: context.readOnly,
-      sidebar: true,
-      subItems: parentProperty || context.schema.adapter.getParentId ? "nested" : "disabled",
+      sidebar: definition.sidebar ?? true,
+      rowSubItems:
+        definition.rowSubItems ??
+        (parentProperty || context.schema.adapter.getParentId
+          ? "nested"
+          : "disabled"),
+      sidebarSubItems:
+        definition.sidebarSubItems ??
+        (parentProperty || context.schema.adapter.getParentId
+          ? "nested"
+          : "disabled"),
+      dependencies: definition.dependencies ?? false,
+      snapToGrid: definition.snapToGrid ?? true,
       dataState: toTimelineDataState(context),
       renderBar: (item) =>
         renderRecord(options, context, item.data as TRecord, "timeline-bar"),
@@ -961,6 +989,46 @@ function BuiltInTimelineView<TRecord>({
           {
             ...context.view,
             definition: { ...definition, zoom },
+          },
+          { type: "configuration", viewId: context.view.id }
+        ),
+      onSidebarVisibleChange: (sidebar) =>
+        context.updateView(
+          {
+            ...context.view,
+            definition: { ...definition, sidebar },
+          },
+          { type: "configuration", viewId: context.view.id }
+        ),
+      onDependenciesEnabledChange: (dependencies) =>
+        context.updateView(
+          {
+            ...context.view,
+            definition: { ...definition, dependencies },
+          },
+          { type: "configuration", viewId: context.view.id }
+        ),
+      onSnapToGridChange: (snapToGrid) =>
+        context.updateView(
+          {
+            ...context.view,
+            definition: { ...definition, snapToGrid },
+          },
+          { type: "configuration", viewId: context.view.id }
+        ),
+      onRowSubItemModeChange: (rowSubItems) =>
+        context.updateView(
+          {
+            ...context.view,
+            definition: { ...definition, rowSubItems },
+          },
+          { type: "configuration", viewId: context.view.id }
+        ),
+      onSidebarSubItemModeChange: (sidebarSubItems) =>
+        context.updateView(
+          {
+            ...context.view,
+            definition: { ...definition, sidebarSubItems },
           },
           { type: "configuration", viewId: context.view.id }
         ),

@@ -1,5 +1,9 @@
 import { useEffect, useState, type ReactNode } from "react";
-import { DataViewThemeProvider } from "@entropy-ui/data-views";
+import {
+  DataViewThemeProvider,
+  DatabaseViewTabs,
+  createSavedDataView,
+} from "@entropy-ui/data-views";
 import {
   CalendarExample,
   DatabaseExample,
@@ -8,8 +12,29 @@ import {
   TimelineExample,
 } from "./examples";
 
-const VIEW_TABS = ["list", "kanban", "calendar", "timeline"] as const;
-type ViewTab = (typeof VIEW_TABS)[number];
+const VIEW_TABS = [
+  createSavedDataView({ id: "list", name: "List", definition: { type: "list" } }),
+  createSavedDataView({
+    id: "kanban",
+    name: "Board",
+    definition: { type: "kanban", groupByPropertyId: "status" },
+  }),
+  createSavedDataView({
+    id: "calendar",
+    name: "Calendar",
+    definition: { type: "calendar", datePropertyId: "start" },
+  }),
+  createSavedDataView({
+    id: "timeline",
+    name: "Timeline",
+    definition: {
+      type: "timeline",
+      startDatePropertyId: "start",
+      endDatePropertyId: "end",
+    },
+  }),
+] as const;
+type ViewTab = (typeof VIEW_TABS)[number]["id"];
 
 const CODE = `import { DatabaseViews, createSavedDataView } from "@entropy-ui/data-views"
 import { createBuiltInDataViewPlugins } from "@entropy-ui/data-views/adapters"
@@ -95,6 +120,7 @@ export function App() {
   const [engine, setEngine] = useState<ViewTab>("list");
 
   useEffect(() => {
+    document.documentElement.classList.toggle("dark", theme === "dark");
     document.documentElement.classList.toggle("site-dark", theme === "dark");
     localStorage.setItem("edv-docs-theme-v2", theme);
   }, [theme]);
@@ -204,23 +230,14 @@ export function App() {
             title="Pick a perspective, not a new data model."
             copy="Use an engine on its own or let DatabaseViews coordinate saved perspectives. Every preview below consumes the package's public API."
           />
-          <div
-            className="engine-switcher"
-            role="tablist"
-            aria-label="Data view examples"
-          >
-            {VIEW_TABS.map((view) => (
-              <button
-                key={view}
-                role="tab"
-                aria-selected={engine === view}
-                onClick={() => setEngine(view)}
-              >
-                <span className={`engine-icon ${view}`} />
-                {view}
-              </button>
-            ))}
-          </div>
+          <DataViewThemeProvider theme={theme} className="engine-switcher">
+            <DatabaseViewTabs
+              views={VIEW_TABS}
+              activeViewId={engine}
+              onActiveViewIdChange={(viewId) => setEngine(viewId as ViewTab)}
+              aria-label="Data view examples"
+            />
+          </DataViewThemeProvider>
           <div className={`engine-preview engine-${engine}`}>
             <div className="engine-meta">
               <div>
