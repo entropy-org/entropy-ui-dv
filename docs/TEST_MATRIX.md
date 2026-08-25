@@ -1,6 +1,6 @@
 # Release-candidate verification matrix
 
-Verified on 2026-08-16 for `@entropy-ui/data-views@0.1.0-next.2`.
+Verified on 2026-08-25 for `@entropy-ui/data-views@0.1.0-next.3`.
 
 | Gate | Result |
 | --- | --- |
@@ -39,7 +39,7 @@ are checked independently so consumers can avoid that aggregate cost.
   overlapping mutations, permissions, loading/error/no-access states, and
   custom renderers are covered by unit/integration tests.
 - Storybook browser tests run axe-based accessibility checks over standalone,
-  embedded, dark, read-only, error, large-data, and responsive fixtures.
+  section-composed, dark, read-only, error, large-data, and responsive fixtures.
 - Calendar includes DST/range/agenda coverage; Timeline covers hierarchy,
   dependencies, viewport modes, bulk drag, resize, and auto-scroll; Kanban
   covers WIP/swimlanes/reconciliation; List covers hierarchy, editing,

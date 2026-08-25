@@ -79,6 +79,11 @@ The library owns view layout, accessibility, focus, interaction, and transient
 state. Consumers own records, fetching, saved-view persistence, permissions,
 forms, validation, and conflict resolution.
 
+`DatabaseViews` always owns its tabs, global search, dynamic view settings, and
+New action. Calendar and Timeline always render their navigation header below
+that row; List and Kanban intentionally omit idle headers. Consumers customize
+forms and record/property rendering instead of rebuilding data-view chrome.
+
 See the repository documentation for architecture, forms, theming, SSR,
 public API policy, and saved-view migrations.
 

@@ -29,51 +29,17 @@ describe("TimelineControls", () => {
     await user.click(screen.getByTestId("timeline-mode-day"))
 
     expect(onViewportModeChange).toHaveBeenCalledWith("day")
-
-    await user.click(screen.getByTestId("timeline-settings-trigger"))
-    expect(screen.getByTestId("timeline-settings-panel")).toBeInTheDocument()
     expect(
-      screen.getByTestId("timeline-settings-mode-select")
-    ).toBeInTheDocument()
+      screen.queryByTestId("timeline-settings-trigger")
+    ).not.toBeInTheDocument()
   })
 
-  it("controls visibility and hierarchy settings from the header panel", async () => {
-    const user = userEvent.setup()
-    const onSidebarVisibleChange = vi.fn()
-    const onDependenciesEnabledChange = vi.fn()
-    const onRowSubItemModeChange = vi.fn()
-    const onSidebarSubItemModeChange = vi.fn()
-    const { store } = renderTimeline(
-      <TimelineControls />,
-      {
-        sidebar: true,
-        dependencies: true,
-        rowSubItems: "nested",
-        sidebarSubItems: "nested",
-      },
-      {
-        onSidebarVisibleChange,
-        onDependenciesEnabledChange,
-        onRowSubItemModeChange,
-        onSidebarSubItemModeChange,
-      }
-    )
+  it("keeps the required timeline header focused on navigation", () => {
+    renderTimeline(<TimelineControls />)
 
-    await user.click(screen.getByTestId("timeline-settings-trigger"))
-    await user.click(screen.getByTestId("timeline-settings-sidebar"))
-    await user.click(screen.getByTestId("timeline-settings-dependencies"))
-    await user.click(screen.getByTestId("timeline-settings-grid-mode-disabled"))
-    await user.click(
-      screen.getByTestId("timeline-settings-sidebar-mode-flattened")
-    )
-
-    expect(store.getState().sidebarVisible).toBe(false)
-    expect(store.getState().dependenciesEnabled).toBe(false)
-    expect(store.getState().rowSubItemMode).toBe("disabled")
-    expect(store.getState().sidebarSubItemMode).toBe("flattened")
-    expect(onSidebarVisibleChange).toHaveBeenCalledWith(false)
-    expect(onDependenciesEnabledChange).toHaveBeenCalledWith(false)
-    expect(onRowSubItemModeChange).toHaveBeenCalledWith("disabled")
-    expect(onSidebarSubItemModeChange).toHaveBeenCalledWith("flattened")
+    expect(screen.getByTestId("timeline-controls")).toBeVisible()
+    expect(screen.getByText("Timeline")).toBeVisible()
+    expect(screen.getByTestId("timeline-today-btn")).toBeVisible()
+    expect(screen.getByTestId("timeline-mode-select")).toBeVisible()
   })
 })

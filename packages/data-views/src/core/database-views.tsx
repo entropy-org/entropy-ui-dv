@@ -1,19 +1,22 @@
 "use client"
 
-import React, { useCallback, useId, useMemo, type ReactNode } from "react"
+import React, {
+  useCallback,
+  useEffect,
+  useId,
+  useMemo,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react"
 import {
   CalendarDays,
   Columns3,
-  Ellipsis,
-  Filter,
   List,
   Plus,
   Search,
-  SlidersHorizontal,
-  SortAsc,
   SquareStack,
-  Trash2,
-  Copy,
+  X,
 } from "lucide-react"
 import { Button } from "../components/ui/button.js"
 import { Input } from "../components/ui/input.js"
@@ -32,7 +35,7 @@ import {
 } from "./database-views-store.js"
 import { createDataViewRegistry, renderRegisteredDataView } from "./view-registry.js"
 import { createDataViewOperationIdFactory } from "./operations.js"
-import type { DataViewChrome } from "../shared/chrome.js"
+import { DatabaseViewSettings } from "./database-view-settings.js"
 import type {
   DataViewController,
   DataViewCreateRequest,
@@ -42,6 +45,7 @@ import type {
   DataViewPlugin,
   DataViewRendererContext,
   DataViewSchema,
+  DataViewSettings,
   SavedDataView,
   SavedDataViewChange,
 } from "./types.js"
@@ -54,44 +58,6 @@ function ViewIcon({ type }: { readonly type: SavedDataView["definition"]["type"]
   if (type === "timeline") return <SquareStack aria-hidden="true" />
   return <List aria-hidden="true" />
 }
-
-export interface DatabaseViewsHeaderProps
-  extends Omit<React.ComponentPropsWithoutRef<"header">, "title"> {
-  readonly title: ReactNode
-  readonly description?: ReactNode
-  readonly actions?: ReactNode
-}
-
-export const DatabaseViewsHeader = React.memo(
-  React.forwardRef<HTMLElement, DatabaseViewsHeaderProps>(
-    function DatabaseViewsHeader(
-      { title, description, actions, className, ...props },
-      ref
-    ) {
-      return (
-        <header
-          ref={ref}
-          className={cn(
-            "flex min-h-12 shrink-0 items-center justify-between gap-4 border-b border-border/70 bg-background px-3 py-2",
-            className
-          )}
-          data-edv-part="database-header"
-          {...props}
-        >
-          <div className="min-w-0">
-            <h2 className="truncate font-heading text-sm font-semibold">{title}</h2>
-            {description ? (
-              <div className="truncate text-xs text-muted-foreground">
-                {description}
-              </div>
-            ) : null}
-          </div>
-          {actions ? <div className="flex shrink-0 items-center gap-2">{actions}</div> : null}
-        </header>
-      )
-    }
-  )
-)
 
 export interface DatabaseViewTabsProps
   extends React.ComponentPropsWithoutRef<"div"> {
@@ -120,7 +86,7 @@ export const DatabaseViewTabs = React.memo(
         <div
           ref={ref}
           className={cn(
-            "flex min-w-0 items-center gap-0.5 overflow-x-auto px-2",
+            "flex min-w-0 items-center overflow-x-auto",
             className
           )}
           data-edv-part="view-tabs"
@@ -132,8 +98,13 @@ export const DatabaseViewTabs = React.memo(
                 key={view.id}
                 role="tab"
                 aria-selected={view.id === activeViewId}
-                variant={view.id === activeViewId ? "secondary" : "ghost"}
-                className="gap-1.5"
+                variant="ghost"
+                size="lg"
+                className={cn(
+                  "relative h-10 rounded-none px-2.5 text-muted-foreground shadow-none transition-colors duration-150 after:absolute after:right-2.5 after:bottom-0 after:left-2.5 after:h-0.5 after:origin-center after:scale-x-0 after:rounded-full after:bg-foreground after:transition-transform after:duration-200 hover:bg-transparent hover:text-foreground",
+                  view.id === activeViewId &&
+                    "text-foreground after:scale-x-100"
+                )}
                 onClick={() => onActiveViewIdChange(view.id)}
               >
                 <ViewIcon type={view.definition.type} />
@@ -148,6 +119,7 @@ export const DatabaseViewTabs = React.memo(
                   <Button
                     variant="ghost"
                     size="icon"
+                    className="ml-0.5"
                     aria-label="Add a view"
                   />
                 }
@@ -198,140 +170,100 @@ export const DatabaseViewTabs = React.memo(
   )
 )
 
-export interface DatabaseViewsToolbarProps
+interface DatabaseViewsToolbarProps
   extends React.ComponentPropsWithoutRef<"div"> {
   readonly view: SavedDataView
-  readonly canEditView: boolean
   readonly onSearchChange?: (search: string) => void
-  readonly onConfigureView?: (view: SavedDataView) => void
-  readonly onDuplicateView?: (view: SavedDataView) => void
-  readonly onDeleteView?: (view: SavedDataView) => void
-  readonly viewActions?: ReactNode
+  readonly settings?: ReactNode
+  readonly createAction?: ReactNode
 }
 
-export const DatabaseViewsToolbar = React.memo(
+const DatabaseViewsToolbar = React.memo(
   React.forwardRef<HTMLDivElement, DatabaseViewsToolbarProps>(
     function DatabaseViewsToolbar(
       {
         view,
-        canEditView,
         onSearchChange,
-        onConfigureView,
-        onDuplicateView,
-        onDeleteView,
-        viewActions,
+        settings,
+        createAction,
         className,
         ...props
       },
       ref
     ) {
-      const menu = useDatabaseViewsStore((state) => state.menu)
-      const setMenu = useDatabaseViewsStore((state) => state.actions.setMenu)
-      const menuOpen = menu.type === "view-actions" && menu.viewId === view.id
+      const [searchOpen, setSearchOpen] = useState(Boolean(view.query.search))
+      const isSearchOpen = searchOpen || Boolean(view.query.search)
+      const inputRef = useRef<HTMLInputElement | null>(null)
+
+      useEffect(() => {
+        if (isSearchOpen) inputRef.current?.focus()
+      }, [isSearchOpen])
+
       return (
         <div
           ref={ref}
           className={cn(
-            "flex min-h-10 shrink-0 items-center justify-between gap-3 border-t border-border/50 px-2 py-1.5",
+            "ml-auto flex min-h-10 shrink-0 items-center justify-end gap-1 px-2",
             className
           )}
           data-edv-part="view-toolbar"
           {...props}
         >
-          <div className="relative min-w-36 max-w-sm flex-1">
-            <Search
-              aria-hidden="true"
-              className="pointer-events-none absolute top-1/2 left-2 size-3.5 -translate-y-1/2 text-muted-foreground"
-            />
-            <Input
-              aria-label={`Search ${view.name}`}
-              className="pl-7"
-              value={view.query.search}
-              readOnly={!onSearchChange}
-              onChange={(event) => onSearchChange?.(event.currentTarget.value)}
-            />
-          </div>
-          <div className="flex shrink-0 items-center gap-1">
-            {view.query.filters.length > 0 ? (
-              <Button variant="secondary" onClick={() => onConfigureView?.(view)}>
-                <Filter />
-                {view.query.filters.length}
-              </Button>
-            ) : null}
-            {view.query.sorts.length > 0 ? (
-              <Button variant="secondary" onClick={() => onConfigureView?.(view)}>
-                <SortAsc />
-                {view.query.sorts.length}
-              </Button>
-            ) : null}
-            {viewActions}
-            {onConfigureView ? (
+          {onSearchChange ? (
+            isSearchOpen ? (
+              <div className="relative w-44 animate-in fade-in slide-in-from-right-1 duration-150">
+                <Search
+                  aria-hidden="true"
+                  className="pointer-events-none absolute top-1/2 left-2.5 size-3.5 -translate-y-1/2 text-muted-foreground"
+                />
+                <Input
+                  ref={inputRef}
+                  aria-label={`Search ${view.name}`}
+                  placeholder="Search…"
+                  className="h-8 border-transparent bg-muted/45 pr-8 pl-8 text-xs shadow-none focus-visible:bg-background"
+                  value={view.query.search}
+                  onChange={(event) =>
+                    onSearchChange(event.currentTarget.value)
+                  }
+                />
+                <Button
+                  variant="ghost"
+                  size="icon-sm"
+                  className="absolute top-1/2 right-1 -translate-y-1/2"
+                  aria-label={`Close search for ${view.name}`}
+                  onClick={() => {
+                    onSearchChange("")
+                    setSearchOpen(false)
+                  }}
+                >
+                  <X aria-hidden="true" />
+                </Button>
+              </div>
+            ) : (
               <Button
                 variant="ghost"
-                size="icon"
-                aria-label={`Configure ${view.name}`}
-                onClick={() => onConfigureView(view)}
+                size="icon-lg"
+                aria-label={`Search ${view.name}`}
+                onClick={() => setSearchOpen(true)}
               >
-                <SlidersHorizontal />
+                <Search aria-hidden="true" />
               </Button>
-            ) : null}
-            {canEditView && (onDuplicateView || onDeleteView) ? (
-              <Popover
-                open={menuOpen}
-                onOpenChange={(open) =>
-                  setMenu(
-                    open
-                      ? { type: "view-actions", viewId: view.id }
-                      : { type: "closed" }
-                  )
-                }
-              >
-                <PopoverTrigger
-                  render={
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      aria-label={`More actions for ${view.name}`}
-                    />
-                  }
-                >
-                  <Ellipsis />
-                </PopoverTrigger>
-                <PopoverContent align="end" className="w-48 gap-1 p-1">
-                  {onDuplicateView ? (
-                    <Button
-                      variant="ghost"
-                      className="w-full justify-start"
-                      onClick={() => onDuplicateView(view)}
-                    >
-                      <Copy /> Duplicate view
-                    </Button>
-                  ) : null}
-                  {onDeleteView ? (
-                    <Button
-                      variant="destructive"
-                      className="w-full justify-start"
-                      onClick={() => onDeleteView(view)}
-                    >
-                      <Trash2 /> Delete view
-                    </Button>
-                  ) : null}
-                </PopoverContent>
-              </Popover>
-            ) : null}
-          </div>
+            )
+          ) : null}
+          {settings}
+          {createAction}
         </div>
       )
     }
   )
 )
 
-export interface DatabaseViewSurfaceProps
+interface DatabaseViewSurfaceProps
   extends React.ComponentPropsWithoutRef<"div"> {
   readonly children: ReactNode
 }
 
-export const DatabaseViewSurface = React.memo(
+const DatabaseViewSurface = React.memo(
   React.forwardRef<HTMLDivElement, DatabaseViewSurfaceProps>(
     function DatabaseViewSurface({ className, children, ...props }, ref) {
       return (
@@ -368,17 +300,10 @@ export interface DatabaseViewsProps<TRecord>
   readonly renderUnavailableView?: (view: SavedDataView) => ReactNode
   readonly readOnly?: boolean
   readonly title?: ReactNode
-  /** Hides the database title header when a host section already owns it. */
-  readonly chrome?: DataViewChrome
-  readonly description?: ReactNode
-  readonly headerActions?: ReactNode
-  readonly renderViewActions?: (
-    view: SavedDataView,
-    controller: DataViewController<TRecord>
-  ) => ReactNode
+  /** User-facing settings shown for the active view, or `false` to hide them. */
+  readonly settings?: DataViewSettings
   readonly onIntent?: (intent: DataViewIntent<TRecord>) => void
   readonly onCreateViewRequest?: (request: DataViewCreateRequest) => void
-  readonly onConfigureView?: (view: SavedDataView) => void
   readonly onDuplicateView?: (view: SavedDataView) => void
   readonly onDeleteView?: (view: SavedDataView) => void
   readonly flow?: DataViewFlowState<TRecord>
@@ -407,13 +332,9 @@ function DatabaseViewsBody<TRecord>({
   renderUnavailableView,
   readOnly = false,
   title,
-  chrome = { mode: "standalone" },
-  description,
-  headerActions,
-  renderViewActions,
+  settings = {},
   onIntent,
   onCreateViewRequest,
-  onConfigureView,
   onDuplicateView,
   onDeleteView,
   flow = { mode: "closed" },
@@ -537,30 +458,12 @@ function DatabaseViewsBody<TRecord>({
         data-edv-root=""
         data-edv-part="database-views"
         data-edv-active-view={activeViewId}
-        data-edv-chrome={chrome.mode}
         aria-label={typeof title === "string" ? title : source.label ?? "Database views"}
         {...props}
       >
-        {chrome.mode === "standalone" ? (
-          <DatabaseViewsHeader
-            title={title ?? source.label ?? "Database"}
-            description={description}
-            actions={
-              <>
-                {headerActions}
-                {onIntent && !readOnly ? (
-                  <Button
-                    onClick={() => emitIntent({ type: "create-record", view: activeView })}
-                  >
-                    <Plus /> New
-                  </Button>
-                ) : null}
-              </>
-            }
-          />
-        ) : null}
-        <div className="shrink-0 bg-background/95 backdrop-blur-xl">
+        <div className="flex min-h-10 shrink-0 items-center border-b border-border/60 bg-background/95 backdrop-blur-xl">
           <DatabaseViewTabs
+            className="flex-1"
             views={views}
             activeViewId={activeView.id}
             onActiveViewIdChange={onActiveViewIdChange}
@@ -569,25 +472,36 @@ function DatabaseViewsBody<TRecord>({
           />
           <DatabaseViewsToolbar
             view={activeView}
-            canEditView={Boolean(onViewsChange)}
             onSearchChange={onViewsChange ? search : undefined}
-            onConfigureView={onConfigureView}
-            onDuplicateView={onDuplicateView}
-            onDeleteView={onDeleteView}
-            viewActions={
-              <>
-                {renderViewActions?.(activeView, controller)}
-                {chrome.mode === "embedded" ? headerActions : null}
-                {chrome.mode === "embedded" && onIntent && !readOnly ? (
-                  <Button
-                    onClick={() =>
-                      emitIntent({ type: "create-record", view: activeView })
-                    }
-                  >
-                    <Plus /> New
-                  </Button>
-                ) : null}
-              </>
+            settings={
+              settings !== false && onViewsChange ? (
+                <DatabaseViewSettings
+                  view={activeView}
+                  properties={schema.properties}
+                  settings={settings}
+                  onViewChange={(nextView) =>
+                    updateActiveView(nextView, {
+                      type: "configuration",
+                      viewId: nextView.id,
+                    })
+                  }
+                  onDuplicateView={onDuplicateView}
+                  onDeleteView={onDeleteView}
+                />
+              ) : null
+            }
+            createAction={
+              onIntent && !readOnly ? (
+                <Button
+                  size="lg"
+                  className="shadow-none"
+                  onClick={() =>
+                    emitIntent({ type: "create-record", view: activeView })
+                  }
+                >
+                  <Plus aria-hidden="true" /> New
+                </Button>
+              ) : null
             }
           />
         </div>

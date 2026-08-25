@@ -47,14 +47,8 @@ import { snapToGrid } from "../utils/snap-utils.js"
 import { cn } from "../../../lib/utils.js"
 import type { DisplayRow } from "../hooks/use-display-rows.js"
 import { itemMatchesSearch } from "../utils/search-utils.js"
-import type { DataViewChrome } from "../../../shared/chrome.js"
-import { resolveDataViewHeader } from "../../../shared/chrome.js"
 
-export type TimelineProps = React.HTMLAttributes<HTMLDivElement> & {
-  chrome?: DataViewChrome
-  /** @deprecated Use `chrome={{ mode: "embedded" }}`. */
-  showHeader?: boolean
-}
+export type TimelineProps = React.HTMLAttributes<HTMLDivElement>
 
 const HEADER_HEIGHT = 60
 
@@ -152,13 +146,12 @@ const TimelineSidebarRow = React.memo(function TimelineSidebarRow({
  */
 export const Timeline = React.memo(
   React.forwardRef<HTMLDivElement, TimelineProps>(function Timeline(
-    { className, showHeader = true, chrome, ...props },
+    { className, ...props },
     ref
   ) {
     const store = useContext(TimelineContext)
     if (!store)
       throw new Error("Timeline must be used within a TimelineProvider")
-    const shouldShowHeader = resolveDataViewHeader(chrome, showHeader)
     const {
       dataState,
       dataVersion,
@@ -519,7 +512,6 @@ export const Timeline = React.memo(
         data-testid="timeline-root"
         data-edv-root=""
         data-edv-part="timeline"
-        data-edv-chrome={chrome?.mode ?? "standalone"}
         role="region"
         aria-label="Timeline"
         aria-busy={
@@ -532,12 +524,9 @@ export const Timeline = React.memo(
         data-data-version={dataVersion}
         {...props}
       >
-        {/* Controls: mode switcher + Today button */}
-        {shouldShowHeader ? (
-          <div className="z-40 shrink-0 border-b border-border/80 bg-background/95 px-3 py-2 shadow-[0_1px_0_rgb(0_0_0/0.025)] backdrop-blur-xl">
-            <TimelineControls />
-          </div>
-        ) : null}
+        <div className="z-40 shrink-0 border-b border-border/60 bg-background/95 px-3 py-1.5 backdrop-blur-xl">
+          <TimelineControls />
+        </div>
 
         {/* Main area: optional sidebar + scrollable viewport */}
         {dataState?.status === "loading" && itemCount === 0 ? (

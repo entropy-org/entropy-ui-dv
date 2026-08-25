@@ -35,8 +35,8 @@ describe("DataList", () => {
     expect(screen.getAllByText("Doing")).toHaveLength(1)
   })
 
-  it("can hide its built-in header without hiding records", () => {
-    renderDataList(<DataList showHeader={false} />, createListConfig())
+  it("does not render idle global chrome", () => {
+    renderDataList(<DataList />, createListConfig())
 
     expect(
       screen.queryByRole("textbox", { name: "Search list" })
@@ -117,16 +117,21 @@ describe("DataList", () => {
     )
   })
 
-  it("searches locally and distinguishes filtered empty state", async () => {
-    const user = userEvent.setup()
-    const { store } = renderDataList(<DataList />, createListConfig())
-    const search = screen.getByRole("textbox", { name: "Search list" })
-    await user.type(search, "Record 3")
+  it("applies the wrapper-provided local query and distinguishes filtered empty state", async () => {
+    const { store } = renderDataList(
+      <DataList />,
+      createListConfig({
+        operations: {
+          mode: "client",
+          search: { mode: "local", defaultQuery: "Record 3" },
+          getSearchText: (item) => item.data.title,
+        },
+      })
+    )
     expect(store.getState().searchQuery).toBe("Record 3")
     await waitFor(() => expect(screen.getAllByRole("row")).toHaveLength(1))
     expect(screen.getByRole("row", { name: "Record 3" })).toBeVisible()
-    await user.clear(search)
-    await user.type(search, "missing record")
+    act(() => store.getState().actions.setSearchQuery("missing record"))
     expect(screen.getByText("No records match the current view.")).toBeVisible()
   })
 
@@ -420,58 +425,25 @@ describe("DataList", () => {
     expect(screen.getByText("1 selected")).toBeVisible()
   })
 
-  it("emits ordered server search, filter, and sort requests", async () => {
-    const user = userEvent.setup()
-    const onOperationsChange = vi.fn()
+  it("adopts a controlled server query without rendering global controls", () => {
     const onQueryChange = vi.fn()
-    renderDataList(
+    const { store } = renderDataList(
       <DataList />,
       createListConfig({
         operations: {
           mode: "server",
-          search: { mode: "controlled", query: "", onQueryChange },
+          search: { mode: "controlled", query: "record", onQueryChange },
           filters: [{ id: "open", operator: "equals", value: true }],
           sort: [{ propertyId: "score", direction: "ascending" }],
-          onOperationsChange,
         },
-        renderControls: ({ requestServerOperations }) => (
-          <button
-            type="button"
-            onClick={() =>
-              requestServerOperations?.(
-                {
-                  filters: [{ id: "closed", operator: "equals", value: false }],
-                  sort: [{ propertyId: "score", direction: "descending" }],
-                },
-                "filters"
-              )
-            }
-          >
-            Apply server view
-          </button>
-        ),
       })
     )
 
-    await user.type(screen.getByRole("textbox", { name: "Search list" }), "r")
-    await user.click(screen.getByRole("button", { name: "Apply server view" }))
-
-    expect(onQueryChange).toHaveBeenCalledWith("r")
-    expect(onOperationsChange).toHaveBeenNthCalledWith(
-      1,
-      expect.objectContaining({
-        query: "r",
-        reason: "search",
-        requestId: "list-operation-1",
-      })
-    )
-    expect(onOperationsChange).toHaveBeenNthCalledWith(2, {
-      query: "",
-      filters: [{ id: "closed", operator: "equals", value: false }],
-      sort: [{ propertyId: "score", direction: "descending" }],
-      reason: "filters",
-      requestId: "list-operation-2",
-    })
+    expect(store.getState().searchQuery).toBe("record")
+    expect(onQueryChange).not.toHaveBeenCalled()
+    expect(
+      screen.queryByRole("textbox", { name: "Search list" })
+    ).not.toBeInTheDocument()
   })
 
   it("supports controlled page and infinite-loading requests", async () => {
@@ -705,24 +677,4 @@ describe("DataList", () => {
     )
   })
 
-  it("contains controls renderer failures without losing rows", async () => {
-    const onError = vi.fn()
-    renderDataList(
-      <DataList />,
-      createListConfig({
-        renderControls: () => {
-          throw new Error("controls failed")
-        },
-        onError,
-      })
-    )
-
-    expect(screen.getAllByRole("row")).toHaveLength(4)
-    expect(screen.getByText("Unable to render")).toBeVisible()
-    await waitFor(() =>
-      expect(onError).toHaveBeenCalledWith(
-        expect.objectContaining({ code: "renderer" })
-      )
-    )
-  })
 })

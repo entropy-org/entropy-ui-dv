@@ -1,15 +1,13 @@
 import React from "react"
 import { useTimelineStore } from "../hooks/use-timeline-store.js"
 import { Button } from "../../ui/button.js"
-import { CalendarRange, LocateFixed } from "lucide-react"
-import { TimelineSettings } from "./timeline-settings.js"
+import { LocateFixed } from "lucide-react"
 import { TimelineViewportSelect } from "./timeline-viewport-select.js"
-import { TimelineSearch } from "./timeline-search.js"
 import { cn } from "../../../lib/utils.js"
 
 /**
- * Primary timeline actions and the entry point for view settings.
- * Meant to be placed above the timeline or in a header.
+ * Required engine header containing timeline-only navigation.
+ * Global search and settings belong to DatabaseViews.
  */
 export const TimelineControls = React.memo(
   React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
@@ -17,8 +15,6 @@ export const TimelineControls = React.memo(
       const scrollToToday = useTimelineStore((s) => s.actions.scrollToToday)
       const itemCount = useTimelineStore((s) => s.items.size)
       const selectedCount = useTimelineStore((s) => s.selectedIds.size)
-      const searchQuery = useTimelineStore((s) => s.searchQuery)
-      const setSearchQuery = useTimelineStore((s) => s.actions.setSearchQuery)
       return (
         <div
           ref={ref}
@@ -29,11 +25,8 @@ export const TimelineControls = React.memo(
           data-testid="timeline-controls"
           {...props}
         >
-          <div className="flex min-w-0 items-center gap-2.5">
-            <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary ring-1 ring-primary/15">
-              <CalendarRange className="size-4" aria-hidden="true" />
-            </div>
-            <div className="hidden min-w-0 sm:block">
+          <div className="flex min-w-0 items-center gap-2">
+            <div className="min-w-0">
               <p className="truncate text-xs leading-4 font-semibold">
                 Timeline
               </p>
@@ -49,25 +42,17 @@ export const TimelineControls = React.memo(
           </div>
 
           <div className="flex items-center gap-1.5">
-            <TimelineSearch
-              value={searchQuery}
-              onValueChange={setSearchQuery}
-              onClear={() => setSearchQuery("")}
-            />
-
             <Button
-              variant="outline"
-              size="default"
+              variant="ghost"
+              size="sm"
               onClick={scrollToToday}
               data-testid="timeline-today-btn"
-              className="bg-background shadow-xs"
             >
               <LocateFixed data-icon="inline-start" aria-hidden="true" />
               Today
             </Button>
 
             <TimelineViewportSelect />
-            <TimelineSettings />
           </div>
         </div>
       )

@@ -60,7 +60,6 @@ import type {
 import { createKanbanMutationId } from "../utils/commands.js"
 import { evaluateMoveWip } from "../utils/wip.js"
 import { cn } from "../../../lib/utils.js"
-import { resolveDataViewHeader } from "../../../shared/chrome.js"
 
 const EMPTY_KANBAN_SELECTION: ReadonlySet<string> = new Set()
 
@@ -196,14 +195,11 @@ export const Kanban = React.memo(
       role = "region",
       "aria-label": ariaLabel = "Kanban board",
       "aria-describedby": describedBy,
-      showHeader = true,
-      chrome,
       ...props
     },
     forwardedRef
   ) {
     const config = useKanbanConfig()
-    const shouldShowHeader = resolveDataViewHeader(chrome, showHeader)
     const model = useKanbanModel()
     const commands = useKanbanCommandActions()
     const changePreferences = useKanbanPreferencesChange()
@@ -386,25 +382,6 @@ export const Kanban = React.memo(
         actions.requestFocus(null)
       }
     }, [actions, model.display.visibleCardIds, pendingFocus])
-
-    const focusResult = useCallback(
-      (direction: -1 | 1) => {
-        const visible = model.display.visibleCardIds
-        if (visible.length === 0) return
-        const current = focusedCardId ? visible.indexOf(focusedCardId) : -1
-        const next =
-          current < 0
-            ? direction > 0
-              ? 0
-              : visible.length - 1
-            : (current + direction + visible.length) % visible.length
-        const id = visible[next]!
-        actions.setFocusedCardId(id)
-        actions.requestFocus({ type: "card", id })
-        actions.announce(`Search result ${next + 1} of ${visible.length}.`)
-      },
-      [actions, focusedCardId, model.display.visibleCardIds]
-    )
 
     const handleDragStart = useCallback(
       (event: DragStartEvent) => {
@@ -747,7 +724,6 @@ export const Kanban = React.memo(
         data-testid="kanban"
         data-edv-root=""
         data-edv-part="kanban"
-        data-edv-chrome={chrome?.mode ?? "standalone"}
         className={cn(
           "edv-root relative isolate flex h-full min-h-[520px] min-w-0 flex-col overflow-hidden bg-background text-foreground outline-none forced-colors:border forced-colors:border-[CanvasText]",
           className
@@ -774,15 +750,7 @@ export const Kanban = React.memo(
           {model.callbackError ? (
             <KanbanCallbackFailure error={model.callbackError} />
           ) : null}
-          {shouldShowHeader ? (
-            <KanbanControls
-              itemCount={model.normalized.acceptedCards.length}
-              resultCount={model.display.resultCount}
-              visibleOrder={model.display.visibleCardIds}
-              onPreviousResult={() => focusResult(-1)}
-              onNextResult={() => focusResult(1)}
-            />
-          ) : null}
+          <KanbanControls visibleOrder={model.display.visibleCardIds} />
           {dataState.status !== "loading" &&
           !(dataState.status === "error" && !dataState.hasData) ? (
             <KanbanDataStatus state={dataState} onRetry={config.onRetryData} />

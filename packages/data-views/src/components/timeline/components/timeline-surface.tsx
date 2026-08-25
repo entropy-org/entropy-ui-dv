@@ -1,16 +1,13 @@
 import React from "react"
 import { Timeline, type TimelineProps } from "./timeline.js"
 
-export type TimelineSurfaceProps = Omit<
-  TimelineProps,
-  "chrome" | "showHeader"
->
+export type TimelineSurfaceProps = TimelineProps
 
-/** Headerless Timeline surface intended for `DatabaseViews` and custom shells. */
+/** Timeline surface with its required navigation header. */
 export const TimelineSurface = React.memo(
   React.forwardRef<HTMLDivElement, TimelineSurfaceProps>(
     function TimelineSurface(props, ref) {
-      return <Timeline ref={ref} chrome={{ mode: "embedded" }} {...props} />
+      return <Timeline ref={ref} {...props} />
     }
   )
 )

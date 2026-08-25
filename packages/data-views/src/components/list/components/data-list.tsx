@@ -7,16 +7,13 @@ import React, {
   useRef,
 } from "react"
 import { useVirtualizer } from "@tanstack/react-virtual"
-import { Rows3 } from "lucide-react"
 import { Button } from "../../ui/button.js"
 import {
   DATA_LIST_DEFAULT_OVERSCAN,
   DATA_LIST_DEFAULT_VIRTUALIZATION_THRESHOLD,
-  DATA_LIST_DENSITIES,
   DATA_LIST_GROUP_HEIGHT,
   DATA_LIST_ROW_HEIGHT,
 } from "../constants.js"
-import { DataListControls } from "./data-list-controls.js"
 import { DataListGroupHeader } from "./data-list-group-header.js"
 import { DataListPagination } from "./data-list-pagination.js"
 import {
@@ -56,7 +53,6 @@ import type {
   DataListEditCommand,
   DataListMutationHandler,
   DataListMutationResult,
-  DataListServerOperationState,
   DataListSelectionChange,
 } from "../types.js"
 import {
@@ -71,13 +67,8 @@ import {
   toggleSelection,
 } from "../utils/selection.js"
 import { cn } from "../../../lib/utils.js"
-import type { DataViewChrome } from "../../../shared/chrome.js"
-import { resolveDataViewHeader } from "../../../shared/chrome.js"
 
 export type DataListProps = React.ComponentPropsWithoutRef<"div"> & {
-  readonly chrome?: DataViewChrome
-  /** @deprecated Use `chrome={{ mode: "embedded" }}`. */
-  readonly showHeader?: boolean
   readonly showColumnHeaders?: boolean
 }
 
@@ -147,15 +138,12 @@ function DataListInner(
     className,
     onKeyDown,
     "aria-label": ariaLabel = "Database list",
-    showHeader = true,
-    chrome,
     showColumnHeaders = false,
     ...props
   }: DataListProps,
   forwardedRef: React.ForwardedRef<HTMLDivElement>
 ) {
   const config = useDataListConfig<unknown>()
-  const shouldShowHeader = resolveDataViewHeader(chrome, showHeader)
   const model = useDataListModel<unknown>()
   const store = useDataListStoreApi()
   const actions = useDataListStore(selectListActions)
@@ -175,7 +163,6 @@ function DataListInner(
   const mountedRef = useRef(true)
   const previousItemsRef = useRef(config.items)
   const mutationSequence = useRef(0)
-  const operationSequence = useRef(0)
   const loadMoreInFlightRef = useRef(false)
   const instructionsId = useId()
   const roles = getSemanticRoles(config)
@@ -1015,99 +1002,12 @@ function DataListInner(
     ]
   )
 
-  const requestServerOperations = useCallback(
-    (
-      next: Partial<DataListServerOperationState>,
-      reason: "search" | "filters" | "sort" | "refresh"
-    ) => {
-      if (operations.mode !== "server" || !operations.onOperationsChange) {
-        return
-      }
-      operationSequence.current += 1
-      operations.onOperationsChange({
-        query: next.query ?? query,
-        filters: next.filters ?? operations.filters ?? [],
-        sort: next.sort ?? operations.sort ?? [],
-        reason,
-        requestId: `list-operation-${operationSequence.current}`,
-      })
-    },
-    [operations, query]
-  )
-
-  const setQuery = useCallback(
-    (nextQuery: string) => {
-      const search = operations.search
-      if (search?.mode === "controlled") {
-        search.onQueryChange(nextQuery)
-      } else {
-        actions.setSearchQuery(nextQuery)
-        search?.onQueryChange?.(nextQuery)
-      }
-      requestServerOperations({ query: nextQuery }, "search")
-    },
-    [actions, operations.search, requestServerOperations]
-  )
-
   const matchingCount = model.resultCount
   const selectedCount = getSelectedCount(selection, matchingCount)
   const selectedItems = model.itemEntries
     .filter((entry) => isItemSelected(selection, entry.item.id))
     .map((entry) => entry.item)
   const publicSelection = toPublicSelection(selection)
-
-  const cycleDensity = useCallback(() => {
-    if (!config.onPreferencesChange) return
-    const currentIndex = DATA_LIST_DENSITIES.indexOf(density)
-    const next =
-      DATA_LIST_DENSITIES[(currentIndex + 1) % DATA_LIST_DENSITIES.length]
-    config.onPreferencesChange({ ...config.preferences, density: next })
-  }, [config, density])
-
-  const customControls = (
-    <>
-      {config.renderControls ? (
-        <DataListRenderBoundary
-          resetKey={`controls:${query}`}
-          onError={(cause) =>
-            config.onError?.({
-              code: "renderer",
-              message: "The list controls renderer failed.",
-              cause,
-            })
-          }
-        >
-          <DataListRenderSlot
-            render={() =>
-              config.renderControls?.({
-                query,
-                setQuery,
-                resultCount: model.resultCount,
-                loadedCount: model.loadedCount,
-                requestServerOperations:
-                  operations.mode === "server" && operations.onOperationsChange
-                    ? (next, reason) => requestServerOperations(next, reason)
-                    : undefined,
-              })
-            }
-          />
-        </DataListRenderBoundary>
-      ) : null}
-      {config.onPreferencesChange ? (
-        <Button
-          type="button"
-          variant="ghost"
-          size="icon"
-          className="size-8"
-          onClick={cycleDensity}
-          aria-label={`Density: ${density}. Change density`}
-          title={`Density: ${density}`}
-        >
-          <Rows3 className="size-3.5" />
-        </Button>
-      ) : null}
-    </>
-  )
 
   const pendingValuesByItem = useMemo(() => {
     const result = new Map<string, Map<string, unknown>>()
@@ -1590,7 +1490,6 @@ function DataListInner(
       data-testid="data-list"
       data-edv-root=""
       data-edv-part="list"
-      data-edv-chrome={chrome?.mode ?? "standalone"}
       data-list-part="root"
       data-density={density}
       data-read-only={readOnly || undefined}
@@ -1614,40 +1513,30 @@ function DataListInner(
       >
         {announcement}
       </span>
-      {shouldShowHeader ? (
-        <DataListControls
-          query={query}
-          placeholder={operations.search?.placeholder}
-          resultCount={model.resultCount}
-          totalCount={model.totalCount}
-          loadedCount={model.loadedCount}
-          pending={
-            (operations.mode === "server" && operations.pending) ||
-            status.state === "loading" ||
-            (pagination?.mode === "page" && pagination.pending) ||
-            (pagination?.mode === "infinite" && pagination.fetchingNextPage) ||
-            pendingCommands.size > 0
-          }
-          searchDisabled={
-            operations.mode === "server" &&
-            !operations.search &&
-            !operations.onOperationsChange
-          }
-          selectedCount={selectable ? selectedCount : 0}
-          bulkActions={bulkActions}
-          customControls={customControls}
-          onQueryChange={setQuery}
-          onClearSelection={
-            selectable
-              ? () =>
-                  emitSelection(
-                    { kind: "explicit", ids: new Set() },
-                    "clear",
-                    null
-                  )
-              : undefined
-          }
-        />
+      {selectable && selectedCount > 0 ? (
+        <div
+          role="toolbar"
+          aria-label="Selected record actions"
+          className="flex min-h-9 items-center gap-2 border-b border-border/60 bg-muted/20 px-2 py-1"
+        >
+          <span className="text-xs font-medium">{selectedCount} selected</span>
+          {bulkActions}
+          <Button
+            type="button"
+            variant="ghost"
+            size="sm"
+            className="ml-auto"
+            onClick={() =>
+              emitSelection(
+                { kind: "explicit", ids: new Set() },
+                "clear",
+                null
+              )
+            }
+          >
+            Clear
+          </Button>
+        </div>
       ) : null}
       {currentError && !blockingError ? (
         <div
