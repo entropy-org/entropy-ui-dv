@@ -20,7 +20,7 @@
     "package:lint": "pnpm --filter @entropy-ui/data-views package:lint",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "publish:next": "changeset publish --tag next",
+    "publish:next": "changeset publish",
     "publish:latest": "changeset publish",
     "check": "pnpm lint && pnpm typecheck && pnpm test && pnpm build && pnpm build:verify && pnpm bundle:check && pnpm fixtures:build && pnpm storybook:build && pnpm test:storybook && pnpm package:lint && pnpm pack:check"
   },
