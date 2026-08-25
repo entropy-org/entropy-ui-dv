@@ -1,5 +1,4 @@
 import type { CSSProperties, HTMLAttributes, ReactNode } from "react"
-import type { DataViewChrome } from "../../shared/chrome.js"
 
 export interface KanbanCard {
   readonly id: string
@@ -557,7 +556,4 @@ export interface KanbanProps extends Omit<
   "children"
 > {
   readonly style?: CSSProperties
-  readonly chrome?: DataViewChrome
-  /** @deprecated Use `chrome={{ mode: "embedded" }}`. */
-  readonly showHeader?: boolean
 }

@@ -11,9 +11,9 @@ The library owns view layout, interaction, accessibility, transient state,
 and optimistic presentation. Applications own records, fetching, persistence,
 permissions, domain forms, and conflict resolution.
 
-The extraction and application migration are complete, and the
-`0.1.0-next.2` release candidate is public on npm. Stable promotion remains a
-release-owner action; see `docs/RELEASE.md`.
+The extraction and application migration are complete, and prerelease builds
+are public on npm. Stable promotion remains a release-owner action; see
+`docs/RELEASE.md`.
 
 ## Workspace commands
 

@@ -252,6 +252,8 @@ export interface DataViewKanbanDefinition extends DataViewDefinitionBase {
   readonly groupByPropertyId: DataViewPropertyId
   readonly swimlaneByPropertyId?: DataViewPropertyId
   readonly cardSize?: "compact" | "comfortable"
+  readonly columnWidth?: number
+  readonly showWipLimits?: boolean
 }
 
 export interface DataViewCalendarDefinition extends DataViewDefinitionBase {
@@ -279,7 +281,36 @@ export interface DataViewTimelineDefinition extends DataViewDefinitionBase {
     | "month"
     | "quarter"
     | "year"
+  readonly sidebar?: boolean
+  readonly dependencies?: boolean
+  readonly snapToGrid?: boolean
+  readonly rowSubItems?: "disabled" | "flattened" | "nested"
+  readonly sidebarSubItems?: "disabled" | "flattened" | "nested"
 }
+
+export type DataViewSettingId =
+  | "visible-properties"
+  | "density"
+  | "column-headers"
+  | "grouping"
+  | "swimlanes"
+  | "column-width"
+  | "wip-limits"
+  | "week-start"
+  | "weekends"
+  | "time-format"
+  | "timeline-sidebar"
+  | "timeline-dependencies"
+  | "timeline-snap"
+  | "timeline-row-hierarchy"
+  | "timeline-sidebar-hierarchy"
+
+export type DataViewSettings =
+  | false
+  | {
+      /** Removes user-facing controls that do not belong in a host product. */
+      readonly hidden?: readonly DataViewSettingId[]
+    }
 
 export interface DataViewCustomDefinition extends DataViewDefinitionBase {
   readonly type: "custom"

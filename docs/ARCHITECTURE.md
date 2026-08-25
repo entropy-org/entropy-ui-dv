@@ -32,6 +32,8 @@ flowchart LR
 | Permissions | Enforces supplied flags | Owns authorization decision |
 | Theme defaults and semantic tokens | Owns | Overrides tokens/scoped theme |
 | Domain renderers | Provides usable defaults | May replace record/property rendering |
+| View tabs, search, settings, and New action | Owns and renders once | Supplies controlled state and handles intents |
+| Engine navigation | Calendar/Timeline render it inside the engine | Supplies controlled view preferences |
 
 ## Component layers
 
@@ -40,10 +42,22 @@ stores are per-provider and never contain fetched server records. The database
 shell’s Zustand store contains only transient menu and selection state, with
 actions grouped under `actions`.
 
-`chrome={{mode: "standalone"}}` renders engine controls. Embedded surfaces
-force `chrome={{mode: "embedded"}}`; the database shell owns its title header,
-view tabs, global search, saved query controls, and record action. A temporary
-deprecated `showHeader` prop exists only for source migration.
+`DatabaseViews` has one fixed composition contract. Its top row owns saved-view
+tabs, Add view, global search, active-view settings, and New. Consumers do not
+recreate or hide that row. The active engine renders below it.
+
+Calendar and Timeline always render a second, engine-specific header for date
+navigation, Today, mode, and zoom. List and Kanban do not need an idle engine
+header, so they render the surface directly; contextual selection actions may
+appear only while records are selected. There is no `chrome` or `showHeader`
+switch. `*Surface` exports are compatibility aliases with the same required
+engine composition, not a header-hiding escape hatch.
+
+Settings are derived from the active saved-view definition and emitted through
+`onViewsChange`. `settings={false}` hides the settings entry entirely, while
+`settings={{hidden: [...]}}` removes named user-facing options. Data bindings,
+permissions, adapter configuration, and other developer concerns never appear
+in this menu.
 
 ## Plug-ins
 

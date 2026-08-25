@@ -193,7 +193,7 @@ their resolved instant. Consumers expand recurring occurrences before supplying 
 - Errors thrown by consumer render functions are contained to the calendar. Use `renderErrorState` for branded recovery
   and `onRenderError` for reporting.
 
-The supported desktop geometry is 960px (`MIN_CALENDAR_DESKTOP_WIDTH_PX`). `Calendar` contains horizontal overflow,
+The supported desktop geometry is 720px (`MIN_CALENDAR_DESKTOP_WIDTH_PX`). `Calendar` contains horizontal overflow,
 so it remains usable inside a narrower host without widening the page. At 200% zoom, users can scroll the calendar
 surface horizontally.
 

@@ -413,17 +413,6 @@ export interface DataListVirtualizationOptions {
   readonly initialHeight?: number
 }
 
-export interface DataListRenderControlsContext {
-  readonly query: string
-  readonly setQuery: (query: string) => void
-  readonly resultCount: number
-  readonly loadedCount: number
-  readonly requestServerOperations?: (
-    next: Partial<DataListServerOperationState>,
-    reason: "filters" | "sort" | "refresh"
-  ) => void
-}
-
 export interface DataListConfig<TData> {
   readonly items: readonly DataListItem<TData>[]
   readonly properties?: readonly DataListAnyProperty<TData>[]
@@ -447,9 +436,6 @@ export interface DataListConfig<TData> {
   readonly clickBehavior?: "select" | "activate" | "select-and-activate"
   readonly readOnly?: boolean
   readonly virtualization?: boolean | DataListVirtualizationOptions
-  readonly renderControls?: (
-    context: DataListRenderControlsContext
-  ) => ReactNode
   readonly renderRowActions?: (
     context: DataListRowActionContext<TData>
   ) => ReactNode

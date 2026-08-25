@@ -108,8 +108,9 @@ describe("calendar keyboard commands", () => {
     expect(store.getState().focusedDate).toBe("2026-08-03")
 
     onAnchorDateChange.mockClear()
-    const search = screen.getByLabelText("Search calendar")
-    fireEvent.keyDown(search, { key: "t" })
+    const editable = document.createElement("input")
+    screen.getByTestId("calendar").append(editable)
+    fireEvent.keyDown(editable, { key: "t" })
     expect(onAnchorDateChange).not.toHaveBeenCalled()
   })
 

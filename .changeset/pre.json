@@ -1,0 +1,13 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@entropy-ui/data-views-docs": "0.0.0",
+    "@entropy-ui-fixtures/next-app": "0.0.0",
+    "@entropy-ui-fixtures/vite-app": "0.0.0",
+    "@entropy-ui/data-views": "0.1.0-next.2"
+  },
+  "changesets": [
+    "tidy-views-own-chrome"
+  ]
+}

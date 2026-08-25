@@ -6,13 +6,13 @@ must reconcile or roll back.
 
 | Capability | List | Kanban | Calendar | Timeline |
 | --- | --- | --- | --- | --- |
-| Standalone and embedded chrome | Yes | Yes | Yes | Yes |
+| Required engine header | None (contextual selection only) | None (contextual selection only) | Date navigation + mode | Today + zoom |
 | Keyboard navigation | Row/tree arrows, Home/End | Card/group arrows | Date-grid arrows | Row/bar shortcuts |
 | Multi-selection | Explicit/all matching | Visible cards | Visible events | Visible rows |
 | Pointer move | Manual row reorder | Cards and groups | Events | Bars |
 | Resize | — | Column preferences | Event edges | Bar edges/sidebar |
 | Create placement | Group/parent | Group/swimlane | Date/range | Row/date range |
-| Undo/redo | Commands | Optimistic ledger | Commands | Mutation coordinator |
+| Undo/redo engine | Command API, no header button | Optimistic ledger, no header button | Command API, no header button | Mutation coordinator, no header button |
 | Client query | Search/filter/sort | Search/filter | Search/range | Search/range |
 | Server query state | Page/infinite | Page/intersection | Visible range | Bidirectional range |
 | Virtualization | Rows | Groups/cards | Lane layout | Rows/time grid |
@@ -39,6 +39,8 @@ must reconcile or roll back.
 - Focus is restored to a stable view control after popovers and settings close.
 - Hidden views unmount. They do not retain observers, drag sessions, or hotkeys.
 - Forced colors and reduced motion retain state and focus visibility.
+- One database composition renders exactly one tab row, one search entry, one
+  settings entry, and one New action.
 
 The inherited characterization suite plus core contract tests is the automated
 record of this matrix. Browser-level keyboard and zoom checks remain release

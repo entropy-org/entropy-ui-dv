@@ -26,6 +26,9 @@ export default defineConfig({
         ],
         test: {
           name: "storybook",
+          // The 5,000-item agenda story is an intentional browser benchmark.
+          // Cold CI workers can need slightly more than Vitest's 15s default.
+          testTimeout: 30_000,
           browser: {
             enabled: true,
             headless: true,

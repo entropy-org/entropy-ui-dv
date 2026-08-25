@@ -289,7 +289,6 @@ export function DatabaseExample({
       <DatabaseViews
         className="database-example"
         title="Launch workspace"
-        description="One source, four saved perspectives"
         source={{
           mode: "client",
           id: "docs",
@@ -395,7 +394,7 @@ export function ListExample() {
         },
       }}
     >
-      <DataList chrome={{ mode: "embedded" }} />
+      <DataList />
     </DataListProvider>
   )
 }
@@ -460,7 +459,7 @@ export function KanbanExample() {
         onCommand,
       }}
     >
-      <Kanban chrome={{ mode: "embedded" }} className="standalone-engine" />
+      <Kanban className="standalone-engine" />
     </KanbanProvider>
   )
 }
@@ -517,7 +516,7 @@ export function CalendarExample() {
         onPreferencesChange: setPreferences,
       }}
     >
-      <Calendar chrome={{ mode: "embedded" }} className="standalone-engine" />
+      <Calendar className="standalone-engine" />
     </CalendarProvider>
   )
 }
@@ -550,7 +549,7 @@ export function TimelineExample() {
         onItemsChange: setItems,
       }}
     >
-      <Timeline chrome={{ mode: "embedded" }} className="standalone-engine" />
+      <Timeline className="standalone-engine" />
     </TimelineProvider>
   )
 }
